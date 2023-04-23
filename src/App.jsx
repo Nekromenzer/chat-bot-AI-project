@@ -8,7 +8,7 @@ function App () {
       <div className='basis-full md:basis-1/4 md:block hidden'>
         <Emotion />
       </div>
-      <div className='basis-full md:basis-3/4'>
+      <div className='basis-full md:basis-2/4'>
         <Chat />
       </div>
     </div>
