@@ -1,6 +1,6 @@
 import React from 'react'
-import UserInput from './UserInput'
-import ChatArea from './ChatArea'
+import UserInput from './subComponents/UserInput'
+import ChatArea from './subComponents/ChatArea'
 
 const Chat = () => {
   return (

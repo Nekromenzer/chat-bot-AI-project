@@ -1,5 +1,5 @@
 import React from 'react'
-import sendIcon from '../../assets/send-icon.png'
+import sendIcon from '../../../assets/send-icon.png'
 
 const UserInput = ({ value, onBlur, onChange, onClick }) => {
   return (
