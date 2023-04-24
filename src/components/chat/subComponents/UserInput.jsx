@@ -10,7 +10,7 @@ const UserInput = ({ value, onBlur, onChange, onClick }) => {
         onBlur={onBlur}
         onChange={onChange}
         placeholder='say hi!'
-        className='block w-full rounded-md border-0 py-1.5 px-4 antialiased text-stone-100 bg-slate-700 tracking-wider slate-gray-300 placeholder:text-stone-400 text-lg focus:ring-1 focus:ring-slate-700 sm:text-sm sm:leading-6'
+        className='input input-bordered input-primary  block w-full rounded-md py-1.5 px-4 antialiased  tracking-wider slate-gray-300  text-lg focus:ring-1 sm:text-sm sm:leading-6'
       />
       <button
         className='rounded-md border-0 text-stone-90 text-sm py-2 px-3 font-bold'

@@ -4,7 +4,7 @@ import Emotion from './components/emotion/Emotion'
 
 function App () {
   return (
-    <div className='bg-slate-950 h-screen flex flex-col md:flex-row'>
+    <div className='bg-base-100 h-screen flex flex-col md:flex-row'>
       <div className='basis-full md:basis-1/4 md:block hidden'>
         <Emotion />
       </div>
