@@ -17,8 +17,8 @@ const ChatBubble = ({ ai, msg, isAvatar = true }) => {
         </div>
       )}
       <div
-        className={`chat-bubble ${
-          ai ? 'chat-bubble-accent' : 'chat-bubble-primary'
+        className={`chat-bubble text-sm ${
+          ai ? 'chat-bubble-accent' : 'chat-bubble-secondary'
         }`}
       >
         {msg}
