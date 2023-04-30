@@ -3,9 +3,8 @@ import UserInput from './subComponents/UserInput'
 import ChatArea from './subComponents/ChatArea'
 import { communicateWithUser } from '../logic/bot'
 
-const Chat = () => {
+const Chat = ({ conversation, setConversation }) => {
   const [inputValue, setInputValue] = useState('')
-  const [conversation, setConversation] = useState([])
 
   const makeConversation = (val, type) => {
     const newObj = { msg: val, type }
@@ -13,8 +12,6 @@ const Chat = () => {
   }
 
   const callBack = val => {
-    // handle bot reply
-    console.log(val)
     makeConversation(val, 'bot')
   }
 
