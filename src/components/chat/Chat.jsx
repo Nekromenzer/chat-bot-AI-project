@@ -25,12 +25,12 @@ const Chat = () => {
   }
 
   const getBotReply = () => {
-    makeConversation(inputValue, 'not-bot')
-    communicateWithUser(inputValue, callBack)
-    clearInput()
+    if (inputValue !== '') {
+      makeConversation(inputValue, 'not-bot')
+      communicateWithUser(inputValue, callBack)
+      clearInput()
+    }
   }
-
-  console.log(conversation)
 
   return (
     <div className='h-screen flex flex-col justify-between mx-3 md:mx-8 py-4 gap-2'>
