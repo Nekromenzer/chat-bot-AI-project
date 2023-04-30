@@ -1,39 +1,12 @@
 import React from 'react'
 import ChatBubble from '../chatBubble/ChatBubble'
 
-const ChatArea = () => {
+const ChatArea = ({ conversation }) => {
   return (
-    <div className='h-full'>
-      <ChatBubble msg='Hi,Hows going ?' />
-      <ChatBubble
-        msg={
-          <>
-            Hello there, <br />
-            Wht u wanna know?
-          </>
-        }
-        ai
-      />
-      <ChatBubble
-        msg={
-          <div>
-            <ul>
-              <li>number onw</li>
-              <li>number onw</li>
-              <li>number onw</li>
-              <li>number onw</li>
-            </ul>
-          </div>
-        }
-        ai
-      />
-      <ChatBubble msg='Hi,Hows going ?' />
-      <ChatBubble msg='Hi,Hows going ?' />
-      <ChatBubble
-        msg={<div>agsuydguaysg gduyaguydg duhaiuohui hauisd</div>}
-        ai
-      />
-      <ChatBubble msg='Hi,Hows going ?' />
+    <div className='h-full max-h-[90vh] overflow-auto scroll-smooth pr-8 -mr-8 scrollbar-thin scrollbar-thumb-info-content scrollbar-track-gray-100'>
+      {conversation.map((item, key) => (
+        <ChatBubble msg={item.msg} key={key} ai={item.type === 'bot'} />
+      ))}
     </div>
   )
 }
