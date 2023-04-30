@@ -1,14 +1,15 @@
 import React from 'react'
 import sendIcon from '../../../assets/send-icon.png'
 
-const UserInput = ({ value, onBlur, onChange, onClick }) => {
+const UserInput = ({ value, onBlur, onChange, onKeyDown, onClick }) => {
   return (
     <div className='flex items-center gap-2'>
       <input
         type='text'
         value={value}
-        onBlur={onBlur}
         onChange={onChange}
+        onBlur={onBlur}
+        onKeyDown={onKeyDown}
         placeholder='say hi!'
         className='input input-bordered input-primary  block w-full rounded-md py-1.5 px-4 antialiased  tracking-wider slate-gray-300  text-lg focus:ring-1 sm:text-sm sm:leading-6'
       />
