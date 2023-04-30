@@ -1,4 +1,4 @@
-const hiArray = ['Hi', 'Hello', 'Howdy', 'Hello there']
+import { hiArray } from './sampleData'
 
 //  helper functions
 function getRandomValueFromArray (arr) {
@@ -7,7 +7,10 @@ function getRandomValueFromArray (arr) {
 }
 
 export const communicateWithUser = (userText, cb) => {
-  if (userText === 'hi') {
+  //user input covert to lowercase
+  const lowercasedUserText = userText.toLowerCase()
+
+  if (lowercasedUserText === 'hi') {
     return cb(getRandomValueFromArray(hiArray))
   } else {
     return cb('man dan nah yakoo')
