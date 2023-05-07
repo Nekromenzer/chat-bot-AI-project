@@ -16,7 +16,8 @@ function getRandomValueFromArray (arr, type) {
   return {
     data: arr[randomIndex],
     msgType: null,
-    emotion: getEmotions(type)
+    emotion: getEmotions(type),
+    customText: null
   }
 }
 
@@ -27,12 +28,25 @@ export const communicateWithUser = (userText, cb) => {
   if (lowercasedUserText === 'hi') {
     return cb(getRandomValueFromArray(hiArray, 'hi'))
   }
-  // get values from educationHashMap
+  // course
   if (
     lowercasedUserText.includes('course') ||
     lowercasedUserText.includes('courses')
   ) {
     const value = educationHashMap['courses']
+    return cb(value)
+  }
+  // fees
+  if (
+    lowercasedUserText.includes('fee') ||
+    lowercasedUserText.includes('price')
+  ) {
+    const value = educationHashMap['fees']
+    return cb(value)
+  }
+  // check in hash map
+  if (educationHashMap.hasOwnProperty(lowercasedUserText)) {
+    const value = educationHashMap['fees']
     return cb(value)
   } else {
     return cb({
