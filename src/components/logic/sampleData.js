@@ -25,11 +25,13 @@ const stopWords = [
   'with',
   'i',
   'know',
-  'can'
+  'can',
+  'good'
 ]
 
 const hiArray = [
   'Hi',
+  'Hy',
   'Hello',
   'Howdy',
   'Hello there',
