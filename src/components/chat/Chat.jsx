@@ -6,11 +6,19 @@ import { communicateWithUser } from '../logic/bot'
 const Chat = ({ conversation, setConversation }) => {
   const [inputValue, setInputValue] = useState('')
 
+  // set user,bot conversation array
   const makeConversation = (val, type) => {
-    const newObj = { msg: val, type }
+    const newObj = {
+      msg: val.data,
+      emotion: val?.emotion,
+      msgType: val?.msgType,
+      customText: val?.customText,
+      type
+    }
     setConversation(preArray => [...preArray, newObj])
   }
 
+  // callback from makeConversation func
   const callBack = val => {
     makeConversation(val, 'bot')
   }
@@ -18,16 +26,25 @@ const Chat = ({ conversation, setConversation }) => {
   const clearInput = () => {
     setTimeout(() => {
       setInputValue('')
-    }, 200)
+    }, 100)
   }
 
   const getBotReply = () => {
     if (inputValue !== '') {
-      makeConversation(inputValue, 'not-bot')
+      // user msg obj with no emotion
+      const value = {
+        data: inputValue,
+        emotion: 0,
+        msgType: null,
+        customText: null
+      }
+      makeConversation(value, 'not-bot')
       communicateWithUser(inputValue, callBack)
       clearInput()
     }
   }
+
+  console.log(conversation,'conversation')
 
   return (
     <div className='h-screen flex flex-col justify-between mx-3 md:mx-8 py-4 gap-2'>

@@ -8,6 +8,8 @@ const ChatArea = ({ conversation }) => {
     return str.charAt(0).toUpperCase() + str.slice(1)
   }
 
+  const isArray = item => Array.isArray(item)
+
   useEffect(() => {
     // Scroll to the bottom of the chat window
     chatWindowRef.current.scrollTop = chatWindowRef.current.scrollHeight
@@ -19,9 +21,12 @@ const ChatArea = ({ conversation }) => {
     >
       {conversation.map((item, key) => (
         <ChatBubble
-          msg={capitalizeFirstLetter(item.msg)}
+          msg={isArray(item?.msg) ? item.msg : capitalizeFirstLetter(item.msg)}
           key={key}
           ai={item.type === 'bot'}
+          isArray={isArray}
+          msgType={item.msgType}
+          customText={item?.customText}
         />
       ))}
     </div>
