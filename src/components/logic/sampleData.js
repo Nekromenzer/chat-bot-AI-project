@@ -15,7 +15,7 @@ const hiArray = [
 const educationHashMap = {
   courses: {
     data: ['Hnd', 'Undergraduate', 'Postgraduate'],
-    type: 'table',
+    msgType: 'table',
     emotion: 1
   },
   details: 'The course details are as follows...',
