@@ -15,12 +15,21 @@ const hiArray = [
 const educationHashMap = {
   courses: {
     data: ['Hnd', 'Undergraduate', 'Postgraduate'],
-    msgType: 'table',
-    emotion: 1
+    msgType: 'table-simple',
+    emotion: 1,
   },
   details: 'The course details are as follows...',
   enrollment: 'Please provide your personal and enrollment details...',
-  fees: 'The fees for the selected course are $5000.',
+  fees: {
+    data: [
+      { key: 'Hnd', value: '100,000/=' },
+      { key: 'Undergraduate', value: '150,000/=' },
+      { key: 'Postgraduate', value: '250,000/=' }
+    ],
+    msgType: 'stats',
+    emotion: 1,
+    customText:'Here is the fees for each course'
+  },
   scholarship:
     'Based on your academic performance, you are eligible for a scholarship of $2000.',
   admission: 'The admission process includes...',
@@ -39,7 +48,6 @@ const educationHashMap = {
   online:
     'We also offer online courses for those who cannot attend classes in person.',
   prerequisites: 'The prerequisites for the selected course are...'
-  // Add more intents and corresponding responses as needed
 }
 
 export { hiArray, educationHashMap }
