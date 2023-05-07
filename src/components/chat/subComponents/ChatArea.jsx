@@ -27,6 +27,7 @@ const ChatArea = ({ conversation }) => {
           isArray={isArray}
           msgType={item.msgType}
           customText={item?.customText}
+          emotion={item.emotion}
         />
       ))}
     </div>

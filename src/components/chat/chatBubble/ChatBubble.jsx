@@ -1,8 +1,6 @@
 import React from 'react'
 import userAvatar from '../../../assets/avatar/user.png'
-import userAvatarAnimate from '../../../assets/avatar/userAnimate.gif'
 import botAvatarAnimate from '../../../assets/avatar/pixelbot-robot.gif'
-import botAvatar from '../../../assets/avatar/robot.png'
 
 const ChatBubble = ({
   ai,
@@ -10,7 +8,8 @@ const ChatBubble = ({
   isAvatar = true,
   isArray,
   msgType,
-  customText
+  customText,
+  emotion
 }) => {
   return (
     <div className={`chat ${ai ? 'chat-end' : 'chat-start'}`}>
@@ -53,13 +52,17 @@ const ChatBubble = ({
             ) : msgType === 'stats' ? (
               <>
                 {customText && (
-                  <div className='my-2 text-end font-mono text-base'>{customText}</div>
+                  <div className='my-2 text-end font-mono text-base subpixel-antialiased'>
+                    {customText}
+                  </div>
                 )}
                 <div className='stats stats-vertical lg:stats-horizontal shadow'>
                   {msg.map((item, idx) => (
                     <div key={idx} className='stat'>
-                      <div className='stat-title font-mono text-neutral-content'>{item.key}</div>
-                      <div className='text-primary font-bold font-mono'>
+                      <div className='stat-title font-mono text-neutral-content subpixel-antialiased'>
+                        {item.key}
+                      </div>
+                      <div className='text-primary font-bold font-mono tracking-wide subpixel-antialiased'>
                         {item.value}
                       </div>
                       <div class='stat-figure text-primary'>
@@ -93,7 +96,18 @@ const ChatBubble = ({
             )}
           </>
         ) : (
-          <div className={`${ai && 'font-mono'}`}>{msg}</div>
+          <div className='flex'>
+            <div
+              className={`${
+                ai
+                  ? 'font-mono tracking-wide font-normal subpixel-antialiased'
+                  : 'font-normal tracking-wide subpixel-antialiased'
+              }`}
+            >
+              {msg}
+            </div>
+            {emotion === 2 ? <div>😋</div> : ''}
+          </div>
         )}
       </div>
     </div>
