@@ -4,7 +4,7 @@ import { hiArray, educationHashMap } from './sampleData'
 // get random value from array provided
 function getRandomValueFromArray (arr) {
   const randomIndex = Math.floor(Math.random() * arr.length)
-  return arr[randomIndex]
+  return { value: { data: arr[randomIndex] } }
 }
 
 export const communicateWithUser = (userText, cb) => {
