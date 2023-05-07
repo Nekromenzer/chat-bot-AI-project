@@ -7,6 +7,7 @@ function getEmotions (type) {
   if (type === 'hi') {
     return 1
   }
+  return 0
 }
 
 // get random value from array provided
@@ -34,6 +35,10 @@ export const communicateWithUser = (userText, cb) => {
     const value = educationHashMap['courses']
     return cb(value)
   } else {
-    return cb('man dan nah yakoo')
+    return cb({
+      data: 'Man dan nah yakooo!',
+      msgType: null,
+      emotion: 0
+    })
   }
 }
