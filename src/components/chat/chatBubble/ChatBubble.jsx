@@ -1,19 +1,16 @@
 import React from 'react'
+import userAvatar from '../../../assets/avatar/user.png'
+import userAvatarAnimate from '../../../assets/avatar/userAnimate.gif'
+import botAvatarAnimate from '../../../assets/avatar/pixelbot-robot.gif'
+import botAvatar from '../../../assets/avatar/robot.png'
 
 const ChatBubble = ({ ai, msg, isAvatar = true, isArray, msgType }) => {
-  console.log(msg, 'bot')
   return (
     <div className={`chat ${ai ? 'chat-end' : 'chat-start'}`}>
       {isAvatar && (
         <div className='chat-image avatar'>
           <div className='w-10 rounded-full'>
-            <img
-              src={
-                !ai
-                  ? 'https://www.assyst.de/cms/upload/sub/digitalisierung/18-F.jpg'
-                  : 'https://static.vecteezy.com/system/resources/previews/004/996/790/original/robot-chatbot-icon-sign-free-vector.jpg'
-              }
-            />
+            <img src={!ai ? userAvatar : botAvatarAnimate} />
           </div>
         </div>
       )}
@@ -30,8 +27,10 @@ const ChatBubble = ({ ai, msg, isAvatar = true, isArray, msgType }) => {
                   <tbody>
                     {msg.map((item, idx) => (
                       <tr key={idx} className='hover cursor-pointer'>
-                        <th className='text-neutral-content'>{idx + 1}.</th>{' '}
-                        <th className='text-neutral-content font-light'>{item}</th>
+                        <th className='text-neutral-content'>{idx + 1}.</th>
+                        <th className='text-neutral-content font-light'>
+                          {item}
+                        </th>
                       </tr>
                     ))}
                   </tbody>
