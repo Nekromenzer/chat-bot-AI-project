@@ -12,6 +12,7 @@ const Chat = ({ conversation, setConversation }) => {
       msg: val.data,
       emotion: val?.emotion,
       msgType: val?.msgType,
+      customText: val?.customText,
       type
     }
     setConversation(preArray => [...preArray, newObj])
@@ -31,12 +32,19 @@ const Chat = ({ conversation, setConversation }) => {
   const getBotReply = () => {
     if (inputValue !== '') {
       // user msg obj with no emotion
-      const value = { data: inputValue, emotion: 0, msgType: null }
+      const value = {
+        data: inputValue,
+        emotion: 0,
+        msgType: null,
+        customText: null
+      }
       makeConversation(value, 'not-bot')
       communicateWithUser(inputValue, callBack)
       clearInput()
     }
   }
+
+  console.log(conversation,'conversation')
 
   return (
     <div className='h-screen flex flex-col justify-between mx-3 md:mx-8 py-4 gap-2'>

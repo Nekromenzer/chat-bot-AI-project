@@ -26,6 +26,7 @@ const ChatArea = ({ conversation }) => {
           ai={item.type === 'bot'}
           isArray={isArray}
           msgType={item.msgType}
+          customText={item?.customText}
         />
       ))}
     </div>
