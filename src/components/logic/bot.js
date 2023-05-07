@@ -1,10 +1,22 @@
 import { hiArray, educationHashMap } from './sampleData'
 
 //  helper functions
+
+// emotion for static bot replies
+function getEmotions (type) {
+  if (type === 'hi') {
+    return 1
+  }
+}
+
 // get random value from array provided
-function getRandomValueFromArray (arr) {
+function getRandomValueFromArray (arr, type) {
   const randomIndex = Math.floor(Math.random() * arr.length)
-  return { value: { data: arr[randomIndex] } }
+  return {
+    data: arr[randomIndex],
+    msgType: null,
+    emotion: getEmotions(type)
+  }
 }
 
 export const communicateWithUser = (userText, cb) => {
@@ -12,7 +24,7 @@ export const communicateWithUser = (userText, cb) => {
   const lowercasedUserText = userText.toLowerCase()
   // static replies
   if (lowercasedUserText === 'hi') {
-    return cb(getRandomValueFromArray(hiArray))
+    return cb(getRandomValueFromArray(hiArray, 'hi'))
   }
   // get values from educationHashMap
   if (
