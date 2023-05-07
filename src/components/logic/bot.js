@@ -1,9 +1,9 @@
-import { hiArray, educationHashMap } from './sampleData'
+import { hiArray, educationHashMap, stopWords } from './sampleData'
 
 //  helper functions
 
 // emotion for static bot replies
-function getEmotions (type) {
+const getEmotions = type => {
   if (type === 'hi') {
     return 1
   }
@@ -11,7 +11,7 @@ function getEmotions (type) {
 }
 
 // get random value from array provided
-function getRandomValueFromArray (arr, type) {
+const getRandomValueFromArray = (arr, type) => {
   const randomIndex = Math.floor(Math.random() * arr.length)
   return {
     data: arr[randomIndex],
@@ -21,32 +21,61 @@ function getRandomValueFromArray (arr, type) {
   }
 }
 
+//user input covert to lowercase -> split into words -> remove stop words
+const optimizedUserInput = userText => {
+  return userText
+    .toLowerCase()
+    .split(' ')
+    .filter(word => !stopWords.includes(word))
+    .join(' ')
+}
+
+// check user input in hashmap
+// const checkUserInputInHashMapKey = userInput => {
+//   const searchWords = optimizedUserInput(userInput).split(' ')
+//   const checkIsInHashMap = searchWords?.map(item => educationHashMap[item]).filter(element => element !== undefined);
+//   return checkIsInHashMap
+// }
+
+// console.log(
+//   checkUserInputInHashMapKey('can i know campus life'),
+//   'sadaqwdqwdqwd'
+// )
+
 export const communicateWithUser = (userText, cb) => {
-  //user input covert to lowercase
-  const lowercasedUserText = userText.toLowerCase()
   // static replies
-  if (lowercasedUserText === 'hi') {
+  if (optimizedUserInput(userText) === 'hi') {
     return cb(getRandomValueFromArray(hiArray, 'hi'))
   }
   // course
   if (
-    lowercasedUserText.includes('course') ||
-    lowercasedUserText.includes('courses')
+    (optimizedUserInput(userText).includes('course') ||
+      optimizedUserInput(userText).includes('courses')) &&
+    !(
+      optimizedUserInput(userText).includes('fee') ||
+      optimizedUserInput(userText).includes('price') ||
+      optimizedUserInput(userText).includes('amount')
+    )
   ) {
     const value = educationHashMap['courses']
     return cb(value)
   }
   // fees
   if (
-    lowercasedUserText.includes('fee') ||
-    lowercasedUserText.includes('price')
+    optimizedUserInput(userText).includes('fee') ||
+    optimizedUserInput(userText).includes('price') ||
+    optimizedUserInput(userText).includes('amount')
   ) {
     const value = educationHashMap['fees']
     return cb(value)
   }
+  if (optimizedUserInput(userText).includes('scholarship')) {
+    const value = educationHashMap['scholarship']
+    return cb(value)
+  }
   // check in hash map
-  if (educationHashMap.hasOwnProperty(lowercasedUserText)) {
-    const value = educationHashMap['fees']
+  if (educationHashMap.hasOwnProperty(optimizedUserInput)) {
+    const value = educationHashMap[optimizedUserInput]
     return cb(value)
   } else {
     return cb({
