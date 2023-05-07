@@ -1,6 +1,6 @@
 import React from 'react'
 
-const ChatBubble = ({ ai, msg, isAvatar = true, isArray }) => {
+const ChatBubble = ({ ai, msg, isAvatar = true, isArray, msgType }) => {
   console.log(msg, 'bot')
   return (
     <div className={`chat ${ai ? 'chat-end' : 'chat-start'}`}>
@@ -23,13 +23,30 @@ const ChatBubble = ({ ai, msg, isAvatar = true, isArray }) => {
         }`}
       >
         {isArray(msg) ? (
-          <ol>
-            {msg.map((item, idx) => (
-              <li key={idx}>
-                {idx + 1}. {item}
-              </li>
-            ))}
-          </ol>
+          <>
+            {msgType === 'table' ? (
+              <div className='overflow-x-auto'>
+                <table className='table w-full table-zebra table-compact'>
+                  <tbody>
+                    {msg.map((item, idx) => (
+                      <tr key={idx} className='hover cursor-pointer'>
+                        <th className='text-neutral-content'>{idx + 1}.</th>{' '}
+                        <th className='text-neutral-content font-light'>{item}</th>
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
+              </div>
+            ) : (
+              <ol>
+                {msg.map((item, idx) => (
+                  <li key={idx}>
+                    {idx + 1}. {item}
+                  </li>
+                ))}
+              </ol>
+            )}
+          </>
         ) : (
           msg
         )}
