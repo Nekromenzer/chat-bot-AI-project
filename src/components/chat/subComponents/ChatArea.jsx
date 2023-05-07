@@ -21,7 +21,7 @@ const ChatArea = ({ conversation }) => {
     >
       {conversation.map((item, key) => (
         <ChatBubble
-          msg={isArray(item.msg) ? item.msg : capitalizeFirstLetter(item.msg)}
+          msg={isArray(item?.msg) ? item.msg : capitalizeFirstLetter(item.msg)}
           key={key}
           ai={item.type === 'bot'}
           isArray={isArray}
