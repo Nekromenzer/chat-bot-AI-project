@@ -8,19 +8,18 @@ const Chat = ({ conversation, setConversation }) => {
 
   // set user,bot conversation array
   const makeConversation = (val, type) => {
-    const newObj = { msg: val, type }
+    const newObj = {
+      msg: val.data,
+      emotion: val?.emotion,
+      msgType: val?.msgType,
+      type
+    }
     setConversation(preArray => [...preArray, newObj])
   }
 
   // callback from makeConversation func
   const callBack = val => {
-    console.log(val, '⭐⭐⭐')
-    if (Array.isArray(val)) {
-      val.map((item, idx) => makeConversation(`${idx + 1}.${item}`, 'bot'))
-      console.log(val, 'course')
-    } else {
-      makeConversation(val, 'bot')
-    }
+    makeConversation(val, 'bot')
   }
 
   const clearInput = () => {
@@ -31,7 +30,9 @@ const Chat = ({ conversation, setConversation }) => {
 
   const getBotReply = () => {
     if (inputValue !== '') {
-      makeConversation(inputValue, 'not-bot')
+      // user msg obj with no emotion
+      const value = { data: inputValue, emotion: 0, msgType: null }
+      makeConversation(value, 'not-bot')
       communicateWithUser(inputValue, callBack)
       clearInput()
     }
