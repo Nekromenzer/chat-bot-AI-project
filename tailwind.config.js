@@ -31,7 +31,29 @@ export default {
       'lemonade',
       'night',
       'coffee',
-      'winter'
+      'winter',
+      {
+        dracula: {
+          ...require('daisyui/src/colors/themes')['[data-theme=dracula]'],
+          primary: '#03af68',
+
+          secondary: '#399adb',
+
+          accent: '#fca5a5',
+
+          neutral: '#332839',
+
+          'base-100': '#0D1117',
+
+          info: '#31A5ED',
+
+          success: '#50D782',
+
+          warning: '#AD7310',
+
+          error: '#F53C24'
+        }
+      }
     ]
   },
   theme: {
