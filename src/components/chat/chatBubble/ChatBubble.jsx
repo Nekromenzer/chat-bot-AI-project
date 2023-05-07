@@ -1,6 +1,7 @@
 import React from 'react'
 
-const ChatBubble = ({ ai, msg, isAvatar = true }) => {
+const ChatBubble = ({ ai, msg, isAvatar = true, isArray }) => {
+  console.log(msg, 'bot')
   return (
     <div className={`chat ${ai ? 'chat-end' : 'chat-start'}`}>
       {isAvatar && (
@@ -21,7 +22,17 @@ const ChatBubble = ({ ai, msg, isAvatar = true }) => {
           ai ? 'chat-bubble-accent' : 'chat-bubble-secondary'
         }`}
       >
-        {msg}
+        {isArray(msg) ? (
+          <ol>
+            {msg.map((item, idx) => (
+              <li key={idx}>
+                {idx + 1}. {item}
+              </li>
+            ))}
+          </ol>
+        ) : (
+          msg
+        )}
       </div>
     </div>
   )
