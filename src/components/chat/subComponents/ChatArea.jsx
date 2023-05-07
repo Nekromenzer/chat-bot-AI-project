@@ -8,6 +8,8 @@ const ChatArea = ({ conversation }) => {
     return str.charAt(0).toUpperCase() + str.slice(1)
   }
 
+  const isArray = item => Array.isArray(item)
+
   useEffect(() => {
     // Scroll to the bottom of the chat window
     chatWindowRef.current.scrollTop = chatWindowRef.current.scrollHeight

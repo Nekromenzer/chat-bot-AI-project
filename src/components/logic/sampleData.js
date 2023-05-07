@@ -13,7 +13,11 @@ const hiArray = [
 ]
 
 const educationHashMap = {
-  courses: ['Hnd', 'Undergraduate', 'Postgraduate'],
+  courses: {
+    data: ['Hnd', 'Undergraduate', 'Postgraduate'],
+    type: 'table',
+    emotion: 1
+  },
   details: 'The course details are as follows...',
   enrollment: 'Please provide your personal and enrollment details...',
   fees: 'The fees for the selected course are $5000.',
