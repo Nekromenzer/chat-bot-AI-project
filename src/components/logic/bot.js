@@ -1,7 +1,5 @@
 import { hiArray, educationHashMap, stopWords } from './sampleData'
 
-//  helper functions
-
 // emotion for static bot replies
 const getEmotions = type => {
   if (type === 'hi') {
@@ -30,22 +28,45 @@ const optimizedUserInput = userText => {
     .join(' ')
 }
 
-// check user input in hashmap
-// const checkUserInputInHashMapKey = userInput => {
-//   const searchWords = optimizedUserInput(userInput).split(' ')
-//   const checkIsInHashMap = searchWords?.map(item => educationHashMap[item]).filter(element => element !== undefined);
-//   return checkIsInHashMap
-// }
+const getGreeting = () => {
+  const currentTime = new Date()
+  const currentHour = currentTime.getHours()
 
-// console.log(
-//   checkUserInputInHashMapKey('can i know campus life'),
-//   'sadaqwdqwdqwd'
-// )
+  if (currentHour < 12) {
+    return 'Good morning!'
+  } else if (currentHour >= 12 && currentHour < 18) {
+    return 'Good afternoon!'
+  } else if (currentHour >= 18 && currentHour < 24) {
+    return 'Good evening!'
+  } else {
+    return 'Hello!'
+  }
+}
 
 export const communicateWithUser = (userText, cb) => {
   // static replies
-  if (optimizedUserInput(userText) === 'hi') {
+
+  // hi
+  if (
+    hiArray.some(hiWord =>
+      optimizedUserInput(userText).includes(hiWord.toLocaleLowerCase())
+    )
+  ) {
     return cb(getRandomValueFromArray(hiArray, 'hi'))
+  }
+  // greetings
+  if (
+    optimizedUserInput(userText).includes('morning') ||
+    optimizedUserInput(userText).includes('afternoon') ||
+    optimizedUserInput(userText).includes('evening') ||
+    optimizedUserInput(userText).includes('night')
+  ) {
+    return cb({
+      data: getGreeting(),
+      emotion: 2,
+      msgType: 'greeting',
+      customText: 'How can i help you?'
+    })
   }
   // course
   if (
@@ -85,3 +106,7 @@ export const communicateWithUser = (userText, cb) => {
     })
   }
 }
+
+// +++emotions+++
+// 1 - hi
+// 2- greetings
