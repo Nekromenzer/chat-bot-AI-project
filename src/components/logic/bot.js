@@ -90,8 +90,11 @@ export const communicateWithUser = (userText, cb) => {
     const value = educationHashMap['fees']
     return cb(value)
   }
-  if (optimizedUserInput(userText).includes('scholarship')) {
-    console.log('scholarship')
+  // scholarship
+  if (
+    optimizedUserInput(userText).includes('scholarship') ||
+    optimizedUserInput(userText).includes('scholar')
+  ) {
     const value = educationHashMap['scholarship']
     return cb(value)
   }
