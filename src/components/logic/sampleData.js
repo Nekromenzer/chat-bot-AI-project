@@ -26,7 +26,8 @@ const stopWords = [
   'i',
   'know',
   'can',
-  'good'
+  'good',
+  'about'
 ]
 
 const hiArray = [
