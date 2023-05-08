@@ -49,7 +49,7 @@ export const communicateWithUser = (userText, cb) => {
   // hi
   if (
     hiArray.some(hiWord =>
-      optimizedUserInput(userText).includes(hiWord.toLocaleLowerCase())
+      optimizedUserInput(userText).split(' ').includes(hiWord.toLowerCase())
     )
   ) {
     return cb(getRandomValueFromArray(hiArray, 'hi'))
@@ -91,6 +91,7 @@ export const communicateWithUser = (userText, cb) => {
     return cb(value)
   }
   if (optimizedUserInput(userText).includes('scholarship')) {
+    console.log('scholarship')
     const value = educationHashMap['scholarship']
     return cb(value)
   }
