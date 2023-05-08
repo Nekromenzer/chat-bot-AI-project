@@ -49,7 +49,7 @@ export const communicateWithUser = (userText, cb) => {
   // hi
   if (
     hiArray.some(hiWord =>
-      optimizedUserInput(userText).includes(hiWord.toLocaleLowerCase())
+      optimizedUserInput(userText).split(' ').includes(hiWord.toLowerCase())
     )
   ) {
     return cb(getRandomValueFromArray(hiArray, 'hi'))
@@ -90,7 +90,11 @@ export const communicateWithUser = (userText, cb) => {
     const value = educationHashMap['fees']
     return cb(value)
   }
-  if (optimizedUserInput(userText).includes('scholarship')) {
+  // scholarship
+  if (
+    optimizedUserInput(userText).includes('scholarship') ||
+    optimizedUserInput(userText).includes('scholar')
+  ) {
     const value = educationHashMap['scholarship']
     return cb(value)
   }
