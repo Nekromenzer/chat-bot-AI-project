@@ -16,7 +16,9 @@ const getRandomValueFromArray = (arr, type) => {
   return {
     data: `${arr[randomIndex]}${
       !(storedUserName === null || storedUserName === '') && type === 'hi'
-        ? `, ${storedUserName.charAt(0).toUpperCase() + storedUserName.slice(1)} Welcome back!`
+        ? `, ${
+            storedUserName.charAt(0).toUpperCase() + storedUserName.slice(1)
+          } Welcome back!`
         : ''
     }`,
     msgType: null,
@@ -53,8 +55,8 @@ export const communicateWithUser = (
   userText,
   cb,
   hashMapState,
-  lastMsgOfConversation,
-  conversation
+  conversation,
+  setHashMapState
 ) => {
   // hi
   if (
@@ -135,7 +137,7 @@ export const communicateWithUser = (
     if (
       conversation &&
       conversation.length &&
-      lastMsgOfConversation.msg === 'What is your name ?'
+      conversation[conversation.length - 1].msg === 'What is your name ?'
     ) {
       localStorage.setItem('userName', optimizedUserInput(userText))
       return cb({
@@ -143,10 +145,28 @@ export const communicateWithUser = (
         msgType: null,
         emotion: 4
       })
+    }
+    // learn from user 
+    if (
+      conversation &&
+      conversation.length &&
+      conversation[conversation.length - 1].msgType === 'learn'
+    ) {
+      const secondLastElement = conversation[conversation.length - 2]
+      const secondLastElementMsg = secondLastElement.msg
+      const newHashObj = {
+        data: optimizedUserInput(userText),
+        emotion: 5,
+        msgType: 'self-learned'
+      }
+      const hashMapCopy = hashMapState
+      hashMapCopy[secondLastElementMsg] = newHashObj
+      setHashMapState(hashMapCopy)
     } else {
+      // ask answer form user question which don't know
       return cb({
         data: "I could't find Answer for this in my database, Can you say the answer please",
-        msgType: null,
+        msgType: 'learn',
         emotion: 5
       })
     }
