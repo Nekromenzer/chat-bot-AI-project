@@ -120,7 +120,6 @@ export const communicateWithUser = (
     return cb(value)
   } else {
     if (lastMsgOfConversation.msg === 'What is your name ?') {
-      console.log(optimizedUserInput(userText), 'lastMsgOfConversation')
       localStorage.setItem('userName', optimizedUserInput(userText))
     }
     return cb({
