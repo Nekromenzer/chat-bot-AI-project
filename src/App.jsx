@@ -26,11 +26,17 @@ function App () {
   useEffect(() => {
     if (storedHashMap !== null) {
       setHashMapState(JSON.parse(storedHashMap))
+    } else {
+      localStorage.setItem('hashArray', JSON.stringify(hashMapState))
     }
     if (storedConversation !== null) {
       setConversation(JSON.parse(storedConversation))
+    } else {
+      localStorage.setItem('hashArray', JSON.stringify(hashMapState))
     }
   }, [])
+
+  console.log(hashMapState, 'hashMapState')
 
   return (
     <div className='bg-base-100 h-screen flex flex-col md:flex-row'>
