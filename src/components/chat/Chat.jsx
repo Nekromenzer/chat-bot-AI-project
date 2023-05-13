@@ -63,7 +63,8 @@ const Chat = ({
           inputValue,
           callBack,
           hashMapState,
-          conversation[conversation.length - 1]
+          conversation[conversation.length - 1],
+          conversation
         )
         clearInput()
       }
