@@ -36,7 +36,6 @@ function App () {
       setHashMapState(JSON.parse(storedHashMap))
     }
     if (storedConversation !== null) {
-      console.log(JSON.parse(storedConversation,"sadadasd"))
       setConversation(JSON.parse(storedConversation))
     }
   }, [])
