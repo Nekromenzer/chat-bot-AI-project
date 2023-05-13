@@ -36,8 +36,6 @@ function App () {
     }
   }, [])
 
-  console.log(hashMapState, 'hashMapState')
-
   return (
     <div className='bg-base-100 h-screen flex flex-col md:flex-row'>
       <div className='basis-full md:basis-1/4 md:block hidden'>
