@@ -57,14 +57,15 @@ const Chat = ({
       if (inputValue.toLowerCase() === 'clear') {
         setInputValue('')
         setConversation([])
+        localStorage.removeItem('conversationHistory')
       } else {
         makeConversation(value, 'not-bot')
         communicateWithUser(
           inputValue,
           callBack,
           hashMapState,
-          conversation[conversation.length - 1],
-          conversation
+          conversation,
+          setHashMapState
         )
         clearInput()
       }
