@@ -100,7 +100,7 @@ const ChatBubble = ({
             <div
               className={`${
                 ai
-                  ? 'font-mono tracking-wide font-normal subpixel-antialiased'
+                  ? `font-mono tracking-wide font-normal subpixel-antialiased ${msgType === 'italic' && 'italic'}`
                   : 'font-normal tracking-wide subpixel-antialiased'
               }`}
             >
