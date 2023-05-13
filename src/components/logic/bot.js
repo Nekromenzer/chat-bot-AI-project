@@ -128,9 +128,9 @@ export const communicateWithUser = (
     const value = hashMapState['scholarship']
     return cb(value)
   }
-  // check in hash map
-  if (hashMapState.hasOwnProperty(optimizedUserInput)) {
-    const value = hashMapState[optimizedUserInput]
+  // check in hash map keys = user input
+  if (hashMapState[optimizedUserInput(userText)]) {
+    const value = hashMapState[optimizedUserInput(userText)]
     return cb(value)
   } else {
     // store user name
@@ -146,19 +146,22 @@ export const communicateWithUser = (
         emotion: 4
       })
     }
-    // learn from user 
+    // learn from user
     if (
       conversation &&
       conversation.length &&
       conversation[conversation.length - 1].msgType === 'learn'
     ) {
+      // get asked question
       const secondLastElement = conversation[conversation.length - 2]
       const secondLastElementMsg = secondLastElement.msg
+      // add answer
       const newHashObj = {
         data: optimizedUserInput(userText),
         emotion: 5,
         msgType: 'self-learned'
       }
+      // add to hashmap
       const hashMapCopy = hashMapState
       hashMapCopy[secondLastElementMsg] = newHashObj
       setHashMapState(hashMapCopy)
