@@ -43,9 +43,12 @@ const getGreeting = () => {
   }
 }
 
-export const communicateWithUser = (userText, cb) => {
-  // static replies
-
+export const communicateWithUser = (
+  userText,
+  cb,
+  hashMapState,
+  lastMsgOfConversation
+) => {
   // hi
   if (
     hiArray.some(hiWord =>
@@ -78,8 +81,21 @@ export const communicateWithUser = (userText, cb) => {
       optimizedUserInput(userText).includes('amount')
     )
   ) {
-    const value = educationHashMap['courses']
+    const value = hashMapState['courses']
     return cb(value)
+  }
+  // name
+  if (optimizedUserInput(userText).includes('name')) {
+    const storedValue = localStorage.getItem('userName')
+    return cb({
+      data: `My name is Talktron ${
+        !(storedValue === null || storedValue === '') ? `,${storedValue.charAt(0).toUpperCase() + storedValue.slice(1)}` : ''
+      }`,
+      emotion: 3,
+      // check userName available , if name is there avoid asking "What is your name ?" again
+      msgType: !(storedValue === null || storedValue === '') ? '' : 'duel-msg',
+      customText: 'What is your name ?'
+    })
   }
   // fees
   if (
@@ -87,7 +103,7 @@ export const communicateWithUser = (userText, cb) => {
     optimizedUserInput(userText).includes('price') ||
     optimizedUserInput(userText).includes('amount')
   ) {
-    const value = educationHashMap['fees']
+    const value = hashMapState['fees']
     return cb(value)
   }
   // scholarship
@@ -95,14 +111,18 @@ export const communicateWithUser = (userText, cb) => {
     optimizedUserInput(userText).includes('scholarship') ||
     optimizedUserInput(userText).includes('scholar')
   ) {
-    const value = educationHashMap['scholarship']
+    const value = hashMapState['scholarship']
     return cb(value)
   }
   // check in hash map
-  if (educationHashMap.hasOwnProperty(optimizedUserInput)) {
-    const value = educationHashMap[optimizedUserInput]
+  if (hashMapState.hasOwnProperty(optimizedUserInput)) {
+    const value = hashMapState[optimizedUserInput]
     return cb(value)
   } else {
+    if (lastMsgOfConversation.msg === 'What is your name ?') {
+      console.log(optimizedUserInput(userText), 'lastMsgOfConversation')
+      localStorage.setItem('userName', optimizedUserInput(userText))
+    }
     return cb({
       data: 'Man dan nah yakooo!',
       msgType: null,
