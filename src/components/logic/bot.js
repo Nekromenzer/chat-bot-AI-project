@@ -158,7 +158,7 @@ export const communicateWithUser = (
       // add answer
       const newHashObj = {
         data: optimizedUserInput(userText),
-        emotion: 5,
+        emotion: 6,
         msgType: 'self-learned'
       }
       // add to hashmap
