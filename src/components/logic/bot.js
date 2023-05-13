@@ -14,9 +14,9 @@ const storedUserName = localStorage.getItem('userName')
 const getRandomValueFromArray = (arr, type) => {
   const randomIndex = Math.floor(Math.random() * arr.length)
   return {
-    data: `${arr[randomIndex]} ${
+    data: `${arr[randomIndex]}${
       !(storedUserName === null || storedUserName === '') && type === 'hi'
-        ? `,${storedUserName.charAt(0).toUpperCase() + storedUserName.slice(1)} Welcome back!`
+        ? `, ${storedUserName.charAt(0).toUpperCase() + storedUserName.slice(1)} Welcome back!`
         : ''
     }`,
     msgType: null,
@@ -94,9 +94,9 @@ export const communicateWithUser = (
   // name
   if (optimizedUserInput(userText).includes('name')) {
     return cb({
-      data: `My name is Talktron ${
+      data: `My name is Talktron${
         !(storedUserName === null || storedUserName === '')
-          ? `,${
+          ? `, ${
               storedUserName.charAt(0).toUpperCase() + storedUserName.slice(1)
             }`
           : ''
