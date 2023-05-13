@@ -8,11 +8,17 @@ const getEmotions = type => {
   return 0
 }
 
+const storedUserName = localStorage.getItem('userName')
+
 // get random value from array provided
 const getRandomValueFromArray = (arr, type) => {
   const randomIndex = Math.floor(Math.random() * arr.length)
   return {
-    data: arr[randomIndex],
+    data: `${arr[randomIndex]} ${
+      !(storedUserName === null || storedUserName === '') && type === 'hi'
+        ? `,${storedUserName.charAt(0).toUpperCase() + storedUserName.slice(1)} Welcome back!`
+        : ''
+    }`,
     msgType: null,
     emotion: getEmotions(type),
     customText: null
@@ -47,7 +53,8 @@ export const communicateWithUser = (
   userText,
   cb,
   hashMapState,
-  lastMsgOfConversation
+  lastMsgOfConversation,
+  conversation
 ) => {
   // hi
   if (
@@ -86,14 +93,19 @@ export const communicateWithUser = (
   }
   // name
   if (optimizedUserInput(userText).includes('name')) {
-    const storedValue = localStorage.getItem('userName')
     return cb({
       data: `My name is Talktron ${
-        !(storedValue === null || storedValue === '') ? `,${storedValue.charAt(0).toUpperCase() + storedValue.slice(1)}` : ''
+        !(storedUserName === null || storedUserName === '')
+          ? `,${
+              storedUserName.charAt(0).toUpperCase() + storedUserName.slice(1)
+            }`
+          : ''
       }`,
       emotion: 3,
       // check userName available , if name is there avoid asking "What is your name ?" again
-      msgType: !(storedValue === null || storedValue === '') ? '' : 'duel-msg',
+      msgType: !(storedUserName === null || storedUserName === '')
+        ? ''
+        : 'duel-msg',
       customText: 'What is your name ?'
     })
   }
@@ -119,14 +131,25 @@ export const communicateWithUser = (
     const value = hashMapState[optimizedUserInput]
     return cb(value)
   } else {
-    if (lastMsgOfConversation.msg === 'What is your name ?') {
+    // store user name
+    if (
+      conversation &&
+      conversation.length &&
+      lastMsgOfConversation.msg === 'What is your name ?'
+    ) {
       localStorage.setItem('userName', optimizedUserInput(userText))
+      return cb({
+        data: 'Thank you!, Now I can remember your name',
+        msgType: null,
+        emotion: 4
+      })
+    } else {
+      return cb({
+        data: "I could't find Answer for this in my database, Can you say the answer please",
+        msgType: null,
+        emotion: 5
+      })
     }
-    return cb({
-      data: 'Man dan nah yakooo!',
-      msgType: null,
-      emotion: 0
-    })
   }
 }
 
