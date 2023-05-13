@@ -65,7 +65,8 @@ const Chat = ({
           callBack,
           hashMapState,
           conversation,
-          setHashMapState
+          setHashMapState,
+          setConversation
         )
         clearInput()
       }

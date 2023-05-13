@@ -56,7 +56,8 @@ export const communicateWithUser = (
   cb,
   hashMapState,
   conversation,
-  setHashMapState
+  setHashMapState,
+  setConversation
 ) => {
   // hi
   if (
@@ -165,10 +166,20 @@ export const communicateWithUser = (
       const hashMapCopy = hashMapState
       hashMapCopy[secondLastElementMsg] = newHashObj
       setHashMapState(hashMapCopy)
+
+      // send msg to user after adding his answer
+      const msgFromBot = {
+        msg: 'Thanks! Added to my database, Now I know even than before',
+        emotion: 7, // thanks
+        msgType: null,
+        customText: null,
+        type: 'bot'
+      }
+      setConversation(preArray => [...preArray, msgFromBot])
     } else {
       // ask answer form user question which don't know
       return cb({
-        data: "I could't find Answer for this in my database, Can you say the answer please",
+        data: "I could't find Answer for this in my database, <b>Can you say the answer please?</b>",
         msgType: 'learn',
         emotion: 5
       })
