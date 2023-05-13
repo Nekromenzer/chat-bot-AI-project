@@ -3,7 +3,12 @@ import UserInput from './subComponents/UserInput'
 import ChatArea from './subComponents/ChatArea'
 import { communicateWithUser } from '../logic/bot'
 
-const Chat = ({ conversation, setConversation }) => {
+const Chat = ({
+  conversation,
+  setConversation,
+  hashMapState,
+  setHashMapState
+}) => {
   const [inputValue, setInputValue] = useState('')
 
   // set user,bot conversation array
@@ -21,6 +26,17 @@ const Chat = ({ conversation, setConversation }) => {
   // callback from makeConversation func
   const callBack = val => {
     makeConversation(val, 'bot')
+    // if reply has secondary msg
+    if (val.msgType === 'duel-msg') {
+      const secondMsgVal = {
+        data: val.customText,
+        emotion: val.emotion,
+        msgType: 'italic'
+      }
+      setTimeout(() => {
+        makeConversation(secondMsgVal, 'bot')
+      }, 50)
+    }
   }
 
   const clearInput = () => {
@@ -43,7 +59,13 @@ const Chat = ({ conversation, setConversation }) => {
         setConversation([])
       } else {
         makeConversation(value, 'not-bot')
-        communicateWithUser(inputValue, callBack)
+        communicateWithUser(
+          inputValue,
+          callBack,
+          hashMapState,
+          conversation[conversation.length - 1],
+          conversation
+        )
         clearInput()
       }
     }

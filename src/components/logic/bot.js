@@ -8,11 +8,17 @@ const getEmotions = type => {
   return 0
 }
 
+const storedUserName = localStorage.getItem('userName')
+
 // get random value from array provided
 const getRandomValueFromArray = (arr, type) => {
   const randomIndex = Math.floor(Math.random() * arr.length)
   return {
-    data: arr[randomIndex],
+    data: `${arr[randomIndex]} ${
+      !(storedUserName === null || storedUserName === '') && type === 'hi'
+        ? `,${storedUserName.charAt(0).toUpperCase() + storedUserName.slice(1)} Welcome back!`
+        : ''
+    }`,
     msgType: null,
     emotion: getEmotions(type),
     customText: null
@@ -43,9 +49,13 @@ const getGreeting = () => {
   }
 }
 
-export const communicateWithUser = (userText, cb) => {
-  // static replies
-
+export const communicateWithUser = (
+  userText,
+  cb,
+  hashMapState,
+  lastMsgOfConversation,
+  conversation
+) => {
   // hi
   if (
     hiArray.some(hiWord =>
@@ -78,8 +88,26 @@ export const communicateWithUser = (userText, cb) => {
       optimizedUserInput(userText).includes('amount')
     )
   ) {
-    const value = educationHashMap['courses']
+    const value = hashMapState['courses']
     return cb(value)
+  }
+  // name
+  if (optimizedUserInput(userText).includes('name')) {
+    return cb({
+      data: `My name is Talktron ${
+        !(storedUserName === null || storedUserName === '')
+          ? `,${
+              storedUserName.charAt(0).toUpperCase() + storedUserName.slice(1)
+            }`
+          : ''
+      }`,
+      emotion: 3,
+      // check userName available , if name is there avoid asking "What is your name ?" again
+      msgType: !(storedUserName === null || storedUserName === '')
+        ? ''
+        : 'duel-msg',
+      customText: 'What is your name ?'
+    })
   }
   // fees
   if (
@@ -87,7 +115,7 @@ export const communicateWithUser = (userText, cb) => {
     optimizedUserInput(userText).includes('price') ||
     optimizedUserInput(userText).includes('amount')
   ) {
-    const value = educationHashMap['fees']
+    const value = hashMapState['fees']
     return cb(value)
   }
   // scholarship
@@ -95,19 +123,33 @@ export const communicateWithUser = (userText, cb) => {
     optimizedUserInput(userText).includes('scholarship') ||
     optimizedUserInput(userText).includes('scholar')
   ) {
-    const value = educationHashMap['scholarship']
+    const value = hashMapState['scholarship']
     return cb(value)
   }
   // check in hash map
-  if (educationHashMap.hasOwnProperty(optimizedUserInput)) {
-    const value = educationHashMap[optimizedUserInput]
+  if (hashMapState.hasOwnProperty(optimizedUserInput)) {
+    const value = hashMapState[optimizedUserInput]
     return cb(value)
   } else {
-    return cb({
-      data: 'Man dan nah yakooo!',
-      msgType: null,
-      emotion: 0
-    })
+    // store user name
+    if (
+      conversation &&
+      conversation.length &&
+      lastMsgOfConversation.msg === 'What is your name ?'
+    ) {
+      localStorage.setItem('userName', optimizedUserInput(userText))
+      return cb({
+        data: 'Thank you!, Now I can remember your name',
+        msgType: null,
+        emotion: 4
+      })
+    } else {
+      return cb({
+        data: "I could't find Answer for this in my database, Can you say the answer please",
+        msgType: null,
+        emotion: 5
+      })
+    }
   }
 }
 
