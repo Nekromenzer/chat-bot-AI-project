@@ -14,9 +14,11 @@ const storedUserName = localStorage.getItem('userName')
 const getRandomValueFromArray = (arr, type) => {
   const randomIndex = Math.floor(Math.random() * arr.length)
   return {
-    data: `${arr[randomIndex]} ${
+    data: `${arr[randomIndex]}${
       !(storedUserName === null || storedUserName === '') && type === 'hi'
-        ? `,${storedUserName.charAt(0).toUpperCase() + storedUserName.slice(1)} Welcome back!`
+        ? `, ${
+            storedUserName.charAt(0).toUpperCase() + storedUserName.slice(1)
+          } Welcome back!`
         : ''
     }`,
     msgType: null,
@@ -53,8 +55,9 @@ export const communicateWithUser = (
   userText,
   cb,
   hashMapState,
-  lastMsgOfConversation,
-  conversation
+  conversation,
+  setHashMapState,
+  setConversation
 ) => {
   // hi
   if (
@@ -94,9 +97,9 @@ export const communicateWithUser = (
   // name
   if (optimizedUserInput(userText).includes('name')) {
     return cb({
-      data: `My name is Talktron ${
+      data: `My name is Talktron${
         !(storedUserName === null || storedUserName === '')
-          ? `,${
+          ? `, ${
               storedUserName.charAt(0).toUpperCase() + storedUserName.slice(1)
             }`
           : ''
@@ -126,16 +129,16 @@ export const communicateWithUser = (
     const value = hashMapState['scholarship']
     return cb(value)
   }
-  // check in hash map
-  if (hashMapState.hasOwnProperty(optimizedUserInput)) {
-    const value = hashMapState[optimizedUserInput]
+  // check in hash map keys = user input
+  if (hashMapState[optimizedUserInput(userText)]) {
+    const value = hashMapState[optimizedUserInput(userText)]
     return cb(value)
   } else {
     // store user name
     if (
       conversation &&
       conversation.length &&
-      lastMsgOfConversation.msg === 'What is your name ?'
+      conversation[conversation.length - 1].msg === 'What is your name ?'
     ) {
       localStorage.setItem('userName', optimizedUserInput(userText))
       return cb({
@@ -143,10 +146,41 @@ export const communicateWithUser = (
         msgType: null,
         emotion: 4
       })
-    } else {
-      return cb({
-        data: "I could't find Answer for this in my database, Can you say the answer please",
+    }
+    // learn from user
+    if (
+      conversation &&
+      conversation.length &&
+      conversation[conversation.length - 1].msgType === 'learn'
+    ) {
+      // get asked question
+      const secondLastElement = conversation[conversation.length - 2]
+      const secondLastElementMsg = secondLastElement.msg
+      // add answer
+      const newHashObj = {
+        data: optimizedUserInput(userText),
+        emotion: 6,
+        msgType: 'self-learned'
+      }
+      // add to hashmap
+      const hashMapCopy = hashMapState
+      hashMapCopy[secondLastElementMsg] = newHashObj
+      setHashMapState(hashMapCopy)
+
+      // send msg to user after adding his answer
+      const msgFromBot = {
+        msg: 'Thanks! Added to my database, Now I know even than before',
+        emotion: 7, // thanks
         msgType: null,
+        customText: null,
+        type: 'bot'
+      }
+      setConversation(preArray => [...preArray, msgFromBot])
+    } else {
+      // ask answer form user question which don't know
+      return cb({
+        data: "I could't find Answer for this in my database, <b>Can you say the answer please?</b>",
+        msgType: 'learn',
         emotion: 5
       })
     }

@@ -11,32 +11,28 @@ function App () {
   const storedHashMap = localStorage.getItem('hashArray')
   const storedConversation = localStorage.getItem('conversationHistory')
 
-  // useEffect(() => {
-  //   if (storedHashMap === null) {
-  //     localStorage.setItem('hashArray', JSON.stringify(hashMapState))
-  //   }
-  // }, [hashMapState])
-
-  // useEffect(() => {
-  //   if (storedConversation === null) {
-  //     localStorage.setItem('conversationHistory', JSON.stringify(conversation))
-  //   } else if (storedConversation.length === 0) {
-  //     console.log(storedConversation, 'storedConversation')
-  //   }
-  // }, [conversation])
-
   useDependentEffect(() => {
     if (conversation.length) {
       localStorage.setItem('conversationHistory', JSON.stringify(conversation))
     }
   }, [conversation])
 
+  useDependentEffect(() => {
+    if (hashMapState.length) {
+      localStorage.setItem('hashArray', JSON.stringify(hashMapState))
+    }
+  }, [hashMapState])
+
   useEffect(() => {
     if (storedHashMap !== null) {
       setHashMapState(JSON.parse(storedHashMap))
+    } else {
+      localStorage.setItem('hashArray', JSON.stringify(hashMapState))
     }
     if (storedConversation !== null) {
       setConversation(JSON.parse(storedConversation))
+    } else {
+      localStorage.setItem('hashArray', JSON.stringify(hashMapState))
     }
   }, [])
 
