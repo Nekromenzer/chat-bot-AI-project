@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import robotHi from '../../assets/robot/robot.svg'
 import {
   SadRobot,
@@ -25,13 +25,16 @@ const Emotion = ({ conversation }) => {
   const botLastMsg = isArray(lastMsgObjConversation?.msg)
     ? lastMsgObjConversation?.customText || ''
     : lastMsgObjConversation?.msg || ''
+
   const letBotSpeak = () => {
-    const botMsg = new SpeechSynthesisUtterance(botLastMsg)
-    window.speechSynthesis.speak(botMsg)
+    const utterance = new SpeechSynthesisUtterance(botLastMsg)
+    // voice props
+    utterance.pitch = 0.9
+    utterance.lang = 'en-UK'
+    utterance.voice = window.speechSynthesis.speak(utterance)
   }
 
   const getEmotionRobot = () => {
-    letBotSpeak()
     if (lastMsgEmotion === 1) {
       return SmileRobot
     }
@@ -43,6 +46,12 @@ const Emotion = ({ conversation }) => {
     }
     return robotHi
   }
+
+  useEffect(() => {
+    if (botLastMsg !== '') {
+      letBotSpeak()
+    }
+  }, [botLastMsg])
 
   return (
     <div className='h-screen flex justify-center items-center'>
