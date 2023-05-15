@@ -10,6 +10,9 @@ const getEmotions = type => {
 
 const storedUserName = localStorage.getItem('userName')
 
+
+console.log(storedUserName,'storedUserName')
+
 // get random value from array provided
 const getRandomValueFromArray = (arr, type) => {
   const randomIndex = Math.floor(Math.random() * arr.length)
