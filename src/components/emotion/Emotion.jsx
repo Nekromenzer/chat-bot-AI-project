@@ -13,13 +13,25 @@ import {
   NervoseRobot
 } from '../../assets/emotions'
 
+const isArray = item => Array.isArray(item)
+
 const Emotion = ({ conversation }) => {
   const getBotRepliesOnly =
     conversation.length && conversation?.filter(obj => obj.type === 'bot')
   const lastMsgObjConversation = getBotRepliesOnly[getBotRepliesOnly.length - 1]
   const lastMsgEmotion = lastMsgObjConversation?.emotion || 0
 
+  // speaking part
+  const botLastMsg = isArray(lastMsgObjConversation?.msg)
+    ? lastMsgObjConversation?.customText || ''
+    : lastMsgObjConversation?.msg || ''
+  const letBotSpeak = () => {
+    const botMsg = new SpeechSynthesisUtterance(botLastMsg)
+    window.speechSynthesis.speak(botMsg)
+  }
+
   const getEmotionRobot = () => {
+    letBotSpeak()
     if (lastMsgEmotion === 1) {
       return SmileRobot
     }
