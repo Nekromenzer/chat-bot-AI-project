@@ -49,8 +49,7 @@ const educationHashMap = {
   courses: {
     data: ['Hnd', 'Undergraduate', 'Postgraduate'],
     msgType: 'table-simple',
-    emotion: 1,
-    customText: 'These are the courses available in our institute'
+    emotion: 1
   },
   details: { data: 'The course details are as follows...', emotion: 1 },
   enrollment: 'Please provide your personal and enrollment details...',
