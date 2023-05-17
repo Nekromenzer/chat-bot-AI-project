@@ -19,21 +19,20 @@ function App () {
       localStorage.setItem('conversationHistory', JSON.stringify(conversation))
     }
   }, [conversation])
-
+  
+  // updating
   useDependentEffect(() => {
-    if (hashMapState.length) {
+      console.log("hashmap update",hashMapState)
       localStorage.setItem('hashArray', JSON.stringify(hashMapState))
-    }
   }, [hashMapState])
 
+  console.log(hashMapState,'hashMapState')
   useEffect(() => {
     // hash map
-    if (storedHashMap !== null || JSON.parse(storedHashMap).length > 0){
+    if (JSON.parse(storedHashMap) && JSON.parse(storedHashMap).length !== 0){
       setHashMapState(JSON.parse(storedHashMap))
-      console.log("hashmap true")
     } else {
       localStorage.setItem('hashArray', JSON.stringify(hashMapState))
-      console.log("hashmap fasle")
     }
     // conversation
     if (storedConversation !== null) {
@@ -41,7 +40,7 @@ function App () {
     } else {
       localStorage.setItem('hashArray', JSON.stringify(conversation))
     }
-    userName
+    // userName
     if (storedUserName !== null || storedUserName !== '') {
       setUserName(storedUserName)
     }
