@@ -11,6 +11,7 @@ const ChatBubble = ({
   customText,
   emotion
 }) => {
+
   return (
     <div className={`chat ${ai ? 'chat-end' : 'chat-start'}`}>
       {isAvatar && (
@@ -30,17 +31,19 @@ const ChatBubble = ({
             {msgType === 'table-simple' ? (
               <>
                 {customText && (
-                  <div className='text-end '>{customText && customText}</div>
+                  <div className='my-2 text-start font-mono text-base subpixel-antialiased'>
+                    {customText}
+                  </div>
                 )}
                 <div className='overflow-x-auto'>
-                  <table className='table w-full table-zebra table-compact'>
+                  <table className='table w-full table-zebra table-compact subpixel-antialiased'>
                     <tbody>
                       {msg.map((item, idx) => (
                         <tr key={idx} className='hover cursor-pointer'>
-                          <th className='text-neutral-content msg'>
+                          <th className='text-neutral-content msg font-mono subpixel-antialiased'>
                             {idx + 1}.
                           </th>
-                          <th className='text-neutral-content font-light msg'>
+                          <th className='font-light msg font-mono subpixel-antialiased text-slate-200'>
                             {item}
                           </th>
                         </tr>
@@ -52,7 +55,7 @@ const ChatBubble = ({
             ) : msgType === 'stats' ? (
               <>
                 {customText && (
-                  <div className='my-2 text-end font-mono text-base subpixel-antialiased'>
+                  <div className='my-2 text-start font-mono text-base subpixel-antialiased'>
                     {customText}
                   </div>
                 )}
@@ -85,14 +88,14 @@ const ChatBubble = ({
                   ))}
                 </div>
               </>
-            ) : (
-              <ol>
+            ) : msgType === 'unordered' &&(
+              <ul className='bg-base-300 p-2 rounded-md'>
                 {msg.map((item, idx) => (
-                  <li key={idx} className='font-mono'>
-                    {idx + 1}. {item}
+                  <li key={idx} className='font-mono subpixel-antialiased text-slate-200'>
+                    👉 {item}
                   </li>
                 ))}
-              </ol>
+              </ul>
             )}
           </>
         ) : (
