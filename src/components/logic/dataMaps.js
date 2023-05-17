@@ -46,6 +46,13 @@ const hiArray = [
   'Hola'
 ]
 
+const instructionsArray = [
+  '<span><b>Hi -</b> Get welcome from bot</span>',
+  '<span><b>Clear -</b> Delete all chats</span>',
+  '<span><b>Talk -</b> Activate bot voice</span>',
+  '<span><b>Stop talking -</b> Deactivate bot voice</span>',
+]
+
 const educationHashMap = {
   courses: {
     data: [
@@ -218,4 +225,5 @@ const educationHashMap = {
     emotion: 1
   }
 }
-export { hiArray, educationHashMap, stopWords }
+
+export { hiArray, educationHashMap, stopWords, instructionsArray }
