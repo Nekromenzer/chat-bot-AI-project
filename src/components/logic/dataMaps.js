@@ -69,7 +69,7 @@ const educationHashMap = {
       'Post graduate course',
       'Doctoral course'
     ],
-    msgType: 'table-simple',
+    msgType: 'unordered',
     emotion: 1
   },
   businessAndLaw: {
