@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import UserInput from './subComponents/UserInput'
 import ChatArea from './subComponents/ChatArea'
 import { communicateWithUser } from '../logic/bot'
+import { instructionsArray } from '../logic/dataMaps'
 
 const Chat = ({
   conversation,
@@ -27,8 +28,13 @@ const Chat = ({
   }
 
   //get custom msg
-  const getCustomBotReply = msg => {
-    const value = { data: msg, emotion: 0, msgType: null, customText: null }
+  const getCustomBotReply = (msg, msgType, customText) => {
+    const value = {
+      data: msg,
+      emotion: 0,
+      msgType: msgType || null,
+      customText: customText
+    }
     return makeConversation(value, 'bot')
   }
   // callback from makeConversation func
@@ -70,11 +76,15 @@ const Chat = ({
       } else if (inputValue.toLowerCase() === 'talk') {
         setIsBotSpeak(true)
         setInputValue('')
-        getCustomBotReply('Hey, Im taking again!')
+        getCustomBotReply('Hey, Im talking again!')
       } else if (inputValue.toLowerCase() === 'stop talking') {
         setIsBotSpeak(false)
         setInputValue('')
         getCustomBotReply('Im not talking Anymore!')
+      } else if (inputValue.toLowerCase() === 'help') {
+        setInputValue('')
+        const customText = 'Here is the command guide for Bot'
+        getCustomBotReply(instructionsArray, 'steps', customText)
       } else {
         makeConversation(value, 'not-bot')
         communicateWithUser(
