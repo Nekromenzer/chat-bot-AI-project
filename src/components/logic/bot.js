@@ -10,6 +10,9 @@ const getEmotions = type => {
 
 const storedUserName = localStorage.getItem('userName')
 
+
+console.log(storedUserName,'storedUserName')
+
 // get random value from array provided
 const getRandomValueFromArray = (arr, type) => {
   const randomIndex = Math.floor(Math.random() * arr.length)
@@ -179,7 +182,7 @@ export const communicateWithUser = (
     } else {
       // ask answer form user question which don't know
       return cb({
-        data: "I could't find Answer for this in my database, <b>Can you say the answer please?</b>",
+        data: "I couldn't find Answer for this in my database, <b>Can you say the answer please?</b>",
         msgType: 'learn',
         emotion: 5
       })
