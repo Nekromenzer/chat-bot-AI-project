@@ -27,7 +27,8 @@ const stopWords = [
   'know',
   'can',
   'good',
-  'about'
+  'about',
+  'wht'
 ]
 
 const hiArray = [
@@ -56,7 +57,8 @@ const educationHashMap = {
       'School of life science'
     ],
     msgType: 'table-simple',
-    emotion: 1
+    emotion: 1,
+    customText: 'These are the courses available'
   },
   computing: {
     data: [
