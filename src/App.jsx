@@ -22,11 +22,10 @@ function App () {
   
   // updating
   useDependentEffect(() => {
-      console.log("hashmap update",hashMapState)
       localStorage.setItem('hashArray', JSON.stringify(hashMapState))
-  }, [hashMapState])
+  }, [hashMapState,conversation])
 
-  console.log(hashMapState,'hashMapState')
+
   useEffect(() => {
     // hash map
     if (JSON.parse(storedHashMap) && JSON.parse(storedHashMap).length !== 0){
