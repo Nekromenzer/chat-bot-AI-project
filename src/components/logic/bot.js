@@ -81,19 +81,6 @@ export const communicateWithUser = (
       customText: 'How can i help you?'
     })
   }
-  // course
-  if (
-    (optimizedUserInput(userText).includes('course') ||
-      optimizedUserInput(userText).includes('courses')) &&
-    !(
-      optimizedUserInput(userText).includes('fee') ||
-      optimizedUserInput(userText).includes('price') ||
-      optimizedUserInput(userText).includes('amount')
-    )
-  ) {
-    const value = hashMapState['courses']
-    return cb(value)
-  }
   // name
   if (optimizedUserInput(userText).includes('name')) {
     return cb({
@@ -107,6 +94,19 @@ export const communicateWithUser = (
       msgType: !(userName === null || userName === '') ? '' : 'duel-msg',
       customText: 'What is your name ?'
     })
+  }
+  // course
+  if (
+    (optimizedUserInput(userText).includes('course') ||
+      optimizedUserInput(userText).includes('courses')) &&
+    !(
+      optimizedUserInput(userText).includes('fee') ||
+      optimizedUserInput(userText).includes('price') ||
+      optimizedUserInput(userText).includes('amount')
+    )
+  ) {
+    const value = hashMapState['courses']
+    return cb(value)
   }
   // fees
   if (
