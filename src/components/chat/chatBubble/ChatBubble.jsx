@@ -1,7 +1,6 @@
 import React from 'react'
 import userAvatar from '../../../assets/avatar/user.png'
 import botAvatarAnimate from '../../../assets/avatar/pixelbot-robot.gif'
-import ReactHtmlParser from 'react-html-parser'
 
 const ChatBubble = ({
   ai,
@@ -107,7 +106,7 @@ const ChatBubble = ({
                   : 'font-normal tracking-wide subpixel-antialiased'
               }`}
             >
-              {ReactHtmlParser(msg)}
+              {msg}
             </div>
             {emotion === 2 ? <div>😋</div> : ''}
           </div>
