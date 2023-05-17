@@ -47,7 +47,117 @@ const hiArray = [
 
 const educationHashMap = {
   courses: {
-    data: ['Hnd', 'Undergraduate', 'Postgraduate'],
+    data: [
+      'School of computing',
+      'School of business and law',
+      'School of tourism and hospitality',
+      'School of engineering',
+      'School of languages',
+      'School of life science'
+    ],
+    msgType: 'table-simple',
+    emotion: 1
+  },
+  computing: {
+    data: [
+      'Certificate course',
+      'Hnd course',
+      'Diploma course',
+      'Undergraduate course',
+      'Post graduate course',
+      'Doctoral course'
+    ],
+    msgType: 'table-simple',
+    emotion: 1
+  },
+  businessAndLaw: {
+    data: [
+      'Certificate course',
+      'Hnd course',
+      'Diploma course',
+      'Undergraduate course',
+      'Post graduate course',
+      'Doctoral course'
+    ],
+    msgType: 'table-simple',
+    emotion: 1
+  },
+  hospitality: {
+    data: [
+      'Certificate course',
+      'Hnd course',
+      'Diploma course',
+      'Undergraduate course',
+      'Post graduate course',
+      'Doctoral course'
+    ],
+    msgType: 'table-simple',
+    emotion: 1
+  },
+  tourism: {
+    data: [
+      'Certificate course',
+      'Hnd course',
+      'Diploma course',
+      'Undergraduate course',
+      'Post graduate course',
+      'Doctoral course'
+    ],
+    msgType: 'table-simple',
+    emotion: 1
+  },
+  engineering: {
+    data: [
+      'Certificate course',
+      'Hnd course',
+      'Diploma course',
+      'Undergraduate course',
+      'Post graduate course',
+      'Doctoral course'
+    ],
+    msgType: 'table-simple',
+    emotion: 1
+  },
+  languages: {
+    data: [
+      'Certificate course',
+      'Hnd course',
+      'Diploma course',
+      'Undergraduate course',
+      'Post graduate course',
+      'Doctoral course'
+    ],
+    msgType: 'table-simple',
+    emotion: 1
+  },
+  science: {
+    data: [
+      'Certificate course',
+      'Hnd course',
+      'Diploma course',
+      'Undergraduate course',
+      'Post graduate course',
+      'Doctoral course'
+    ],
+    msgType: 'table-simple',
+    emotion: 1
+  },
+  option: {
+    data: ['Onliine Payment', 'Credit Card Payment'],
+    msgType: 'table-simple',
+    emotion: 1
+  },
+  Faculties: {
+    data: [
+      'IT Lab',
+      'Networking practical Lab',
+      'library',
+      'Network practical Lab',
+      ' A/C Class Rooms',
+      'Auditorium',
+      'Sports',
+      'GYM'
+    ],
     msgType: 'table-simple',
     emotion: 1
   },
@@ -55,9 +165,12 @@ const educationHashMap = {
   enrollment: 'Please provide your personal and enrollment details...',
   fees: {
     data: [
-      { key: 'Hnd', value: '100,000/=' },
-      { key: 'Undergraduate', value: '150,000/=' },
-      { key: 'Postgraduate', value: '250,000/=' }
+      { key: 'Certificate course', value: '74,000/=' },
+      { key: 'Hnd course', value: '150,000/=' },
+      { key: 'Diploma course', value: '250,000/=' },
+      { key: 'Undergraduate course ', value: '400,000/=' },
+      { key: 'Post graduate course', value: '650,000/=' },
+      { key: 'Post graduate course', value: '870,000/=' }
     ],
     msgType: 'stats',
     emotion: 1,
@@ -103,5 +216,4 @@ const educationHashMap = {
     emotion: 1
   }
 }
-
 export { hiArray, educationHashMap, stopWords }
