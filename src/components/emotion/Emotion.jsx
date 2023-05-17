@@ -15,7 +15,7 @@ import {
 
 const isArray = item => Array.isArray(item)
 
-const Emotion = ({ conversation }) => {
+const Emotion = ({ conversation, isBotSpeak }) => {
   const getBotRepliesOnly =
     conversation.length && conversation?.filter(obj => obj.type === 'bot')
   const lastMsgObjConversation = getBotRepliesOnly[getBotRepliesOnly.length - 1]
@@ -48,7 +48,7 @@ const Emotion = ({ conversation }) => {
   }
 
   useEffect(() => {
-    if (botLastMsg !== '') {
+    if (botLastMsg !== '' && isBotSpeak) {
       letBotSpeak()
     }
   }, [botLastMsg])

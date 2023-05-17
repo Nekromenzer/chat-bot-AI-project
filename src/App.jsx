@@ -9,6 +9,7 @@ function App () {
   const [conversation, setConversation] = useState([])
   const [hashMapState, setHashMapState] = useState(educationHashMap)
   const [userName, setUserName] = useState('')
+  const [isBotSpeak, setIsBotSpeak] = useState(true)
 
   const storedConversation = localStorage.getItem('conversationHistory')
   const storedHashMap = localStorage.getItem('hashArray')
@@ -19,16 +20,15 @@ function App () {
       localStorage.setItem('conversationHistory', JSON.stringify(conversation))
     }
   }, [conversation])
-  
+
   // updating
   useDependentEffect(() => {
-      localStorage.setItem('hashArray', JSON.stringify(hashMapState))
-  }, [hashMapState,conversation])
-
+    localStorage.setItem('hashArray', JSON.stringify(hashMapState))
+  }, [hashMapState, conversation])
 
   useEffect(() => {
     // hash map
-    if (JSON.parse(storedHashMap) && JSON.parse(storedHashMap).length !== 0){
+    if (JSON.parse(storedHashMap) && JSON.parse(storedHashMap).length !== 0) {
       setHashMapState(JSON.parse(storedHashMap))
     } else {
       localStorage.setItem('hashArray', JSON.stringify(hashMapState))
@@ -48,7 +48,7 @@ function App () {
   return (
     <div className='bg-base-100 h-screen flex flex-col md:flex-row'>
       <div className='basis-full md:basis-1/4 md:block hidden'>
-        <Emotion conversation={conversation} />
+        <Emotion conversation={conversation} isBotSpeak={isBotSpeak} />
       </div>
       <div className='basis-full md:basis-2/4'>
         <Chat
@@ -58,6 +58,7 @@ function App () {
           setHashMapState={setHashMapState}
           userName={userName}
           setUserName={setUserName}
+          setIsBotSpeak={setIsBotSpeak}
         />
       </div>
     </div>

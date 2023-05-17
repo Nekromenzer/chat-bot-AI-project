@@ -9,7 +9,8 @@ const Chat = ({
   hashMapState,
   setHashMapState,
   userName,
-  setUserName
+  setUserName,
+  setIsBotSpeak
 }) => {
   const [inputValue, setInputValue] = useState('')
 
@@ -25,6 +26,11 @@ const Chat = ({
     setConversation(preArray => [...preArray, newObj])
   }
 
+  //get custom msg
+  const getCustomBotReply = msg => {
+    const value = { data: msg, emotion: 0, msgType: null, customText: null }
+    return makeConversation(value, 'bot')
+  }
   // callback from makeConversation func
   const callBack = val => {
     makeConversation(val, 'bot')
@@ -56,10 +62,19 @@ const Chat = ({
         msgType: null,
         customText: null
       }
+      // custom commands
       if (inputValue.toLowerCase() === 'clear') {
         setInputValue('')
         setConversation([])
         localStorage.removeItem('conversationHistory')
+      } else if (inputValue.toLowerCase() === 'talk') {
+        setIsBotSpeak(true)
+        setInputValue('')
+        getCustomBotReply('Hey, Im taking again!')
+      } else if (inputValue.toLowerCase() === 'stop talking') {
+        setIsBotSpeak(false)
+        setInputValue('')
+        getCustomBotReply('Im not talking Anymore!')
       } else {
         makeConversation(value, 'not-bot')
         communicateWithUser(
@@ -76,8 +91,6 @@ const Chat = ({
       }
     }
   }
-
-  console.log(conversation, 'conversation')
 
   return (
     <div className='h-screen flex flex-col justify-between mx-3 md:mx-8 py-4 gap-2'>
