@@ -105,10 +105,9 @@ const ChatBubble = ({
                     }`
                   : 'font-normal tracking-wide subpixel-antialiased'
               }`}
-            >
-              {msg}
-            </div>
-            {emotion === 2 ? <div>😋</div> : ''}
+              dangerouslySetInnerHTML={{ __html: msg }}
+            />
+            {/* {emotion === 2 ? <div>😋</div> : ''} */}
           </div>
         )}
       </div>
