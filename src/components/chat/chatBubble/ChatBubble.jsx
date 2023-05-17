@@ -56,7 +56,7 @@ const ChatBubble = ({
                     {customText}
                   </div>
                 )}
-                <div className='stats stats-vertical lg:stats-horizontal shadow'>
+                <div className='stats stats-vertical shadow'>
                   {msg.map((item, idx) => (
                     <div key={idx} className='stat'>
                       <div className='stat-title font-mono text-neutral-content subpixel-antialiased'>
