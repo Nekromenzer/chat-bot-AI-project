@@ -8,31 +8,40 @@ import useDependentEffect from './components/hooks/useDependentEffect'
 function App () {
   const [conversation, setConversation] = useState([])
   const [hashMapState, setHashMapState] = useState(educationHashMap)
-  const storedHashMap = localStorage.getItem('hashArray')
+  const [userName, setUserName] = useState('')
+
   const storedConversation = localStorage.getItem('conversationHistory')
+  const storedHashMap = localStorage.getItem('hashArray')
+  const storedUserName = localStorage.getItem('userName')
 
   useDependentEffect(() => {
     if (conversation.length) {
       localStorage.setItem('conversationHistory', JSON.stringify(conversation))
     }
   }, [conversation])
-
+  
+  // updating
   useDependentEffect(() => {
-    if (hashMapState.length) {
       localStorage.setItem('hashArray', JSON.stringify(hashMapState))
-    }
-  }, [hashMapState])
+  }, [hashMapState,conversation])
+
 
   useEffect(() => {
-    if (storedHashMap !== null) {
+    // hash map
+    if (JSON.parse(storedHashMap) && JSON.parse(storedHashMap).length !== 0){
       setHashMapState(JSON.parse(storedHashMap))
     } else {
       localStorage.setItem('hashArray', JSON.stringify(hashMapState))
     }
+    // conversation
     if (storedConversation !== null) {
       setConversation(JSON.parse(storedConversation))
     } else {
-      localStorage.setItem('hashArray', JSON.stringify(hashMapState))
+      localStorage.setItem('hashArray', JSON.stringify(conversation))
+    }
+    // userName
+    if (storedUserName !== null || storedUserName !== '') {
+      setUserName(storedUserName)
     }
   }, [])
 
@@ -47,6 +56,8 @@ function App () {
           setConversation={setConversation}
           hashMapState={hashMapState}
           setHashMapState={setHashMapState}
+          userName={userName}
+          setUserName={setUserName}
         />
       </div>
     </div>

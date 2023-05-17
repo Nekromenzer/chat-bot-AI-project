@@ -7,7 +7,9 @@ const Chat = ({
   conversation,
   setConversation,
   hashMapState,
-  setHashMapState
+  setHashMapState,
+  userName,
+  setUserName
 }) => {
   const [inputValue, setInputValue] = useState('')
 
@@ -66,7 +68,9 @@ const Chat = ({
           hashMapState,
           conversation,
           setHashMapState,
-          setConversation
+          setConversation,
+          userName,
+          setUserName
         )
         clearInput()
       }

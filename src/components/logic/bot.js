@@ -8,19 +8,14 @@ const getEmotions = type => {
   return 0
 }
 
-const storedUserName = localStorage.getItem('userName')
-
-
-console.log(storedUserName,'storedUserName')
-
 // get random value from array provided
-const getRandomValueFromArray = (arr, type) => {
+const getRandomValueFromArray = (arr, type, userName) => {
   const randomIndex = Math.floor(Math.random() * arr.length)
   return {
     data: `${arr[randomIndex]}${
-      !(storedUserName === null || storedUserName === '') && type === 'hi'
+      !(userName === null || userName === '') && type === 'hi'
         ? `, ${
-            storedUserName.charAt(0).toUpperCase() + storedUserName.slice(1)
+            userName.charAt(0).toUpperCase() + userName.slice(1)
           } Welcome back!`
         : ''
     }`,
@@ -60,7 +55,9 @@ export const communicateWithUser = (
   hashMapState,
   conversation,
   setHashMapState,
-  setConversation
+  setConversation,
+  userName,
+  setUserName
 ) => {
   // hi
   if (
@@ -68,7 +65,7 @@ export const communicateWithUser = (
       optimizedUserInput(userText).split(' ').includes(hiWord.toLowerCase())
     )
   ) {
-    return cb(getRandomValueFromArray(hiArray, 'hi'))
+    return cb(getRandomValueFromArray(hiArray, 'hi', userName))
   }
   // greetings
   if (
@@ -101,17 +98,13 @@ export const communicateWithUser = (
   if (optimizedUserInput(userText).includes('name')) {
     return cb({
       data: `My name is Talktron${
-        !(storedUserName === null || storedUserName === '')
-          ? `, ${
-              storedUserName.charAt(0).toUpperCase() + storedUserName.slice(1)
-            }`
+        !(userName === null || userName === '')
+          ? `, ${userName.charAt(0).toUpperCase() + userName.slice(1)}`
           : ''
       }`,
       emotion: 3,
       // check userName available , if name is there avoid asking "What is your name ?" again
-      msgType: !(storedUserName === null || storedUserName === '')
-        ? ''
-        : 'duel-msg',
+      msgType: !(userName === null || userName === '') ? '' : 'duel-msg',
       customText: 'What is your name ?'
     })
   }
@@ -143,7 +136,10 @@ export const communicateWithUser = (
       conversation.length &&
       conversation[conversation.length - 1].msg === 'What is your name ?'
     ) {
+      // store in local storage
       localStorage.setItem('userName', optimizedUserInput(userText))
+      // store in state
+      setUserName(userText)
       return cb({
         data: 'Thank you!, Now I can remember your name',
         msgType: null,
