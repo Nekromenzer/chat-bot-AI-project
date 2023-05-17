@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react'
 import './App.css'
 import Chat from './components/chat/Chat'
 import Emotion from './components/emotion/Emotion'
-import { educationHashMap } from './components/logic/sampleData'
+import { educationHashMap } from './components/logic/dataMaps'
 import useDependentEffect from './components/hooks/useDependentEffect'
 
 function App () {

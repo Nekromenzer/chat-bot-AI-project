@@ -1,4 +1,4 @@
-import { hiArray, educationHashMap, stopWords } from './sampleData'
+import { hiArray, educationHashMap, stopWords } from './dataMaps'
 
 // emotion for static bot replies
 const getEmotions = type => {
