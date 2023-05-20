@@ -105,7 +105,7 @@ const educationHashMap = {
     ],
     msgType: 'table-simple',
     emotion: 1,
-    customText: 'These are the faculties in our institute'
+    customText: 'These are the facilities in our institute'
   },
   // register: {
   //   data: "Please provide your personal and enrollment details... <a href='https://landing.esoft.lk/onlineregistrationform/' target='_blank'>register from here</a>",
