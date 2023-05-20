@@ -125,8 +125,8 @@ export const communicateWithUser = (
     return cb(value)
   }
   // faculties
-  if (optimizedUserInput(userText).includes('faculties')||optimizedUserInput(userText).includes('faculty')) {
-    const value = hashMapState['faculties']
+  if (optimizedUserInput(userText).includes('facilities')||optimizedUserInput(userText).includes('facility')) {
+    const value = hashMapState['facilities']
     return cb(value)
   }
   // fees

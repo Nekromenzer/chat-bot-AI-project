@@ -92,7 +92,7 @@ const educationHashMap = {
     customText: 'We accept Online Payment,Credit Card Payment & cash payment'
   },
   // faculties
-  faculties: {
+  facilities: {
     data: [
       'IT Lab',
       'Networking practical Lab',
