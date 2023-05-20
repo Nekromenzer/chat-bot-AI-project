@@ -24,7 +24,7 @@ const Emotion = ({ conversation, isBotSpeak }) => {
   // speaking part
   const botLastMsg = isArray(lastMsgObjConversation?.msg)
     ? lastMsgObjConversation?.customText || ''
-    : lastMsgObjConversation?.msg || ''
+    : lastMsgObjConversation?.msg || lastMsgObjConversation?.customText
 
   const letBotSpeak = () => {
     const utterance = new SpeechSynthesisUtterance(botLastMsg)
