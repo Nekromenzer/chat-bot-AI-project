@@ -140,10 +140,10 @@ const educationHashMap = {
     emotion: 1
   },
   life: {
-    data: 'Our campus has various facilities such as a library, sports center, and cafeteria.',
+    data: 'Our campus has various facilities such as a library, sports center, and cafeteria. Also cultural events ,sports meet and some curricular activities',
     emotion: 1
   },
-  faculty: {
+  lectures: {
     data: 'Our faculty members are highly qualified and experienced in their respective fields.',
     emotion: 1
   },
@@ -152,7 +152,7 @@ const educationHashMap = {
     emotion: 1
   },
   internships: {
-    data: 'We offer internship opportunities with top companies in the industry.',
+    data: 'We offer internship opportunities with top companies in the industry.In every programme end',
     emotion: 1
   },
   online: {
@@ -160,7 +160,7 @@ const educationHashMap = {
     emotion: 1
   },
   prerequisites: {
-    data: 'The prerequisites for the selected course are...',
+    data: 'The prerequisites for the selected course are You should have minimum C pass for Maths & English in GCE O/L',
     emotion: 1
   },
   branches: {
@@ -172,7 +172,7 @@ const educationHashMap = {
     emotion: 1
   },
   aboutInstitute: {
-    data: 'With roots going back to the year 2000, ESOFT has grown to be the largest private sector higher education network in Sri Lanka due to an extensive island-wide network of 40 branches which create opportunities for over 30,000 students each year. Initially starting with Computing, ESOFT today is a diversified education provider in the fields of ICT & Computing, Business Management, Hospitality Management, Engineering, Personal & Professional Development, Language Training and Corporate Training.',
+    data: 'With roots going back to the year 2000, TecSoft has grown to be the largest private sector higher education network in Sri Lanka due to an extensive island-wide network of 40 branches which create opportunities for over 30,000 students each year. Initially starting with Computing, ESOFT today is a diversified education provider in the fields of ICT & Computing, Business Management, Hospitality Management, Engineering, Personal & Professional Development, Language Training and Corporate Training.',
     emotion: 1
   },
   onlinePay: {
