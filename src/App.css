@@ -6,3 +6,8 @@
 html, body {
   margin: 0;
 }
+
+a {
+  color: rgb(8, 8, 255);
+  text-decoration: underline;
+}
