@@ -125,6 +125,17 @@ export const communicateWithUser = (
     const value = hashMapState['scholarship']
     return cb(value)
   }
+  // good bye
+  if (optimizedUserInput(userText).includes('goodbye')) {
+    return cb({
+      data: `Thank you for considering our institute. Have a great day! ${
+        userName && userName
+      }`,
+      emotion: 2,
+      msgType: 'greeting',
+      customText: null
+    })
+  }
   // check in hash map keys = user input
   if (hashMapState[optimizedUserInput(userText)]) {
     const value = hashMapState[optimizedUserInput(userText)]
