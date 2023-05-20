@@ -50,7 +50,7 @@ const instructionsArray = [
   '<span><b>Hi -</b> Get welcome from bot</span>',
   '<span><b>Clear -</b> Delete all chats</span>',
   '<span><b>Talk -</b> Activate bot voice</span>',
-  '<span><b>Stop talking -</b> Deactivate bot voice</span>',
+  '<span><b>Stop talking -</b> Deactivate bot voice</span>'
 ]
 
 const educationHashMap = {
@@ -67,96 +67,22 @@ const educationHashMap = {
     emotion: 1,
     customText: 'These are the courses available'
   },
-  computing: {
-    data: [
-      'Certificate course',
-      'Hnd course',
-      'Diploma course',
-      'Undergraduate course',
-      'Post graduate course',
-      'Doctoral course'
-    ],
-    msgType: 'unordered',
-    emotion: 1
-  },
-  businessAndLaw: {
-    data: [
-      'Certificate course',
-      'Hnd course',
-      'Diploma course',
-      'Undergraduate course',
-      'Post graduate course',
-      'Doctoral course'
-    ],
-    msgType: 'table-simple',
-    emotion: 1
-  },
-  hospitality: {
-    data: [
-      'Certificate course',
-      'Hnd course',
-      'Diploma course',
-      'Undergraduate course',
-      'Post graduate course',
-      'Doctoral course'
-    ],
-    msgType: 'table-simple',
-    emotion: 1
-  },
-  tourism: {
-    data: [
-      'Certificate course',
-      'Hnd course',
-      'Diploma course',
-      'Undergraduate course',
-      'Post graduate course',
-      'Doctoral course'
-    ],
-    msgType: 'table-simple',
-    emotion: 1
-  },
-  engineering: {
-    data: [
-      'Certificate course',
-      'Hnd course',
-      'Diploma course',
-      'Undergraduate course',
-      'Post graduate course',
-      'Doctoral course'
-    ],
-    msgType: 'table-simple',
-    emotion: 1
-  },
   languages: {
     data: [
-      'Certificate course',
-      'Hnd course',
-      'Diploma course',
-      'Undergraduate course',
-      'Post graduate course',
-      'Doctoral course'
+      'English',
+      'Sinhala',
+      'Tamil',
+      'For language courses its related language'
     ],
     msgType: 'table-simple',
     emotion: 1
   },
-  science: {
-    data: [
-      'Certificate course',
-      'Hnd course',
-      'Diploma course',
-      'Undergraduate course',
-      'Post graduate course',
-      'Doctoral course'
-    ],
-    msgType: 'table-simple',
-    emotion: 1
-  },
-  option: {
+  paymentOption: {
     data: ['Onliine Payment', 'Credit Card Payment'],
     msgType: 'table-simple',
     emotion: 1
   },
-  Faculties: {
+  faculties: {
     data: [
       'IT Lab',
       'Networking practical Lab',
@@ -170,8 +96,10 @@ const educationHashMap = {
     msgType: 'table-simple',
     emotion: 1
   },
-  details: { data: 'The course details are as follows...', emotion: 1 },
-  enrollment: 'Please provide your personal and enrollment details...',
+  register: {
+    data: "Please provide your personal and enrollment details... <a href='https://landing.esoft.lk/onlineregistrationform/' target='_blank'>register from here</a>",
+    emotion: 1
+  },
   fees: {
     data: [
       { key: 'Certificate course', value: '74,000/=' },
@@ -192,12 +120,6 @@ const educationHashMap = {
   admission: { data: 'The admission process includes...', emotion: 1 },
   opportunities: {
     data: 'Our graduates have opportunities in various fields such as...',
-    emotion: 1
-  },
-  help: { data: 'How can I assist you today?', emotion: 1 },
-  greeting: { data: 'Hello! How may I assist you?', emotion: 1 },
-  goodbye: {
-    data: 'Thank you for considering our institute. Have a great day!',
     emotion: 1
   },
   life: {
@@ -222,6 +144,26 @@ const educationHashMap = {
   },
   prerequisites: {
     data: 'The prerequisites for the selected course are...',
+    emotion: 1
+  },
+  branches: {
+    data: 'We have branches in Kandy,Colombo,Galle,Kurunegala',
+    emotion: 1
+  },
+  contact: {
+    data: 'Head office No 03, De Fonseka Place Colombo 04 Sri Lanka Tel :+94 117 572 572',
+    emotion: 1
+  },
+  aboutInstitute: {
+    data: 'With roots going back to the year 2000, ESOFT has grown to be the largest private sector higher education network in Sri Lanka due to an extensive island-wide network of 40 branches which create opportunities for over 30,000 students each year. Initially starting with Computing, ESOFT today is a diversified education provider in the fields of ICT & Computing, Business Management, Hospitality Management, Engineering, Personal & Professional Development, Language Training and Corporate Training.',
+    emotion: 1
+  },
+  onlinePay: {
+    data: 'After getting registered through the app a message will appear to make the payment, which you may follow through that by entering your card details.',
+    emotion: 1
+  },
+  time: {
+    data: 'As it is completely online there is no allocated time frame to follow the courses. The greatest part about the app is that it gives you the flexibility of learning anytime from anywhere, simply through your mobile.',
     emotion: 1
   }
 }
