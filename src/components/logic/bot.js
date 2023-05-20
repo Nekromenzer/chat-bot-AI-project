@@ -118,14 +118,15 @@ export const communicateWithUser = (
     return cb(value)
   }
   // payment methods
-  if (
-    optimizedUserInput(userText).includes('payment')
-  ) {
+  if (optimizedUserInput(userText).includes('payment')) {
     const value = hashMapState['paymentOption']
     return cb(value)
   }
   // faculties
-  if (optimizedUserInput(userText).includes('facilities')||optimizedUserInput(userText).includes('facility')) {
+  if (
+    optimizedUserInput(userText).includes('facilities') ||
+    optimizedUserInput(userText).includes('facility')
+  ) {
     const value = hashMapState['facilities']
     return cb(value)
   }
@@ -144,6 +145,98 @@ export const communicateWithUser = (
     optimizedUserInput(userText).includes('scholar')
   ) {
     const value = hashMapState['scholarship']
+    return cb(value)
+  }
+  // admission
+  if (optimizedUserInput(userText).includes('admission')) {
+    const value = hashMapState['admission']
+    return cb(value)
+  }
+  // opportunities
+  if (
+    optimizedUserInput(userText).includes('opportunities') ||
+    optimizedUserInput(userText).includes('vacancies') ||
+    optimizedUserInput(userText).includes('opportunity') ||
+    optimizedUserInput(userText).includes('vacancy')
+  ) {
+    const value = hashMapState['opportunities']
+    return cb(value)
+  }
+  // life
+  if (optimizedUserInput(userText).includes('life')) {
+    const value = hashMapState['life']
+    return cb(value)
+  }
+  // lectures
+  if (
+    optimizedUserInput(userText).includes('lectures') ||
+    optimizedUserInput(userText).includes('lecture')
+  ) {
+    const value = hashMapState['lectures']
+    return cb(value)
+  }
+  // organizations
+  if (
+    optimizedUserInput(userText).includes('organization') ||
+    optimizedUserInput(userText).includes('union') ||
+    optimizedUserInput(userText).includes('societies') ||
+    optimizedUserInput(userText).includes('society') ||
+    optimizedUserInput(userText).includes('association') ||
+    optimizedUserInput(userText).includes('club')
+  ) {
+    const value = hashMapState['organizations']
+    return cb(value)
+  }
+  // internships
+  if (
+    optimizedUserInput(userText).includes('internships') ||
+    optimizedUserInput(userText).includes('internship')
+  ) {
+    const value = hashMapState['internships']
+    return cb(value)
+  }
+  // online
+  if (
+    optimizedUserInput(userText).includes('online') ||
+    optimizedUserInput(userText).includes('remote')
+  ) {
+    const value = hashMapState['online']
+    return cb(value)
+  }
+  // prerequisites
+  if (
+    optimizedUserInput(userText).includes('prerequisite') ||
+    optimizedUserInput(userText).includes('requirement')
+  ) {
+    const value = hashMapState['prerequisites']
+    return cb(value)
+  }
+  // branches
+  if (optimizedUserInput(userText).includes('branch')) {
+    const value = hashMapState['branches']
+    return cb(value)
+  }
+  // contact
+  if (optimizedUserInput(userText).includes('contact')) {
+    const value = hashMapState['contact']
+    return cb(value)
+  }
+  // aboutInstitute
+  if (optimizedUserInput(userText).includes('institute')) {
+    const value = hashMapState['aboutInstitute']
+    return cb(value)
+  }
+  // onlinePay
+  if (
+    optimizedUserInput(userText).includes('online payment') ||
+    optimizedUserInput(userText).includes('card')
+  ) {
+    const value = hashMapState['onlinePay']
+    return cb(value)
+  }
+  // time
+  if (optimizedUserInput(userText).includes('time')) {
+    const value = hashMapState['time']
     return cb(value)
   }
   // good bye
