@@ -108,6 +108,27 @@ export const communicateWithUser = (
     const value = hashMapState['courses']
     return cb(value)
   }
+  // languages
+  if (
+    optimizedUserInput(userText).includes('languages') ||
+    optimizedUserInput(userText).includes('language') ||
+    optimizedUserInput(userText).includes('medium')
+  ) {
+    const value = hashMapState['languages']
+    return cb(value)
+  }
+  // payment methods
+  if (
+    optimizedUserInput(userText).includes('payment')
+  ) {
+    const value = hashMapState['paymentOption']
+    return cb(value)
+  }
+  // faculties
+  if (optimizedUserInput(userText).includes('faculties')||optimizedUserInput(userText).includes('faculty')) {
+    const value = hashMapState['faculties']
+    return cb(value)
+  }
   // fees
   if (
     optimizedUserInput(userText).includes('fee') ||

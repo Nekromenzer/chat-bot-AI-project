@@ -54,6 +54,7 @@ const instructionsArray = [
 ]
 
 const educationHashMap = {
+  // done
   courses: {
     data: [
       'School of computing',
@@ -67,6 +68,7 @@ const educationHashMap = {
     emotion: 1,
     customText: 'These are the courses available'
   },
+  // languages
   languages: {
     data: [
       'English',
@@ -75,13 +77,21 @@ const educationHashMap = {
       'For language courses its related language'
     ],
     msgType: 'table-simple',
-    emotion: 1
+    emotion: 1,
+    customText: 'According to learning medium we teach in flowing languages'
   },
+  // payment option
   paymentOption: {
-    data: ['Onliine Payment', 'Credit Card Payment'],
-    msgType: 'table-simple',
-    emotion: 1
+    data: [
+      { key: '01. ', value: 'Online Payment' },
+      { key: '02.', value: 'Credit Card Payment' },
+      { key: '03.', value: 'Cash payment' }
+    ],
+    msgType: 'stats',
+    emotion: 1,
+    customText: 'We accept Online Payment,Credit Card Payment & cash payment'
   },
+  // faculties
   faculties: {
     data: [
       'IT Lab',
@@ -94,12 +104,13 @@ const educationHashMap = {
       'GYM'
     ],
     msgType: 'table-simple',
-    emotion: 1
+    emotion: 1,
+    customText: 'These are the faculties in our institute'
   },
-  register: {
-    data: "Please provide your personal and enrollment details... <a href='https://landing.esoft.lk/onlineregistrationform/' target='_blank'>register from here</a>",
-    emotion: 1
-  },
+  // register: {
+  //   data: "Please provide your personal and enrollment details... <a href='https://landing.esoft.lk/onlineregistrationform/' target='_blank'>register from here</a>",
+  //   emotion: 1
+  // },
   fees: {
     data: [
       { key: 'Certificate course', value: '74,000/=' },
@@ -114,12 +125,18 @@ const educationHashMap = {
     customText: 'Here is the fees for each course'
   },
   scholarship: {
-    data: 'Based on your academic performance, you are eligible for a scholarship of $2000.',
-    emotion: 1
+    data: '',
+    emotion: 1,
+    customText:
+      'Based on your academic performance, We have various scholarship according to performance of student, You can get more info from our website'
   },
-  admission: { data: 'The admission process includes...', emotion: 1 },
+  admission: {
+    data: `To get more information about admission process please visit above link`,
+    emotion: 1,
+    customText: 'Visit: <a href="" className="text-blue-600">Adamic info</a> '
+  },
   opportunities: {
-    data: 'Our graduates have opportunities in various fields such as...',
+    data: 'Our graduates have opportunities in various top level companies in Sri lanka as well as Overseas',
     emotion: 1
   },
   life: {
