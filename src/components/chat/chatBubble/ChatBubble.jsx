@@ -25,9 +25,10 @@ const ChatBubble = ({
         }`}
       >
         {customText && (
-          <div className='my-2 text-start font-mono text-base subpixel-antialiased'>
-            {customText}
-          </div>
+          <div
+            className='my-2 text-start font-mono text-base subpixel-antialiased'
+            dangerouslySetInnerHTML={{ __html: customText }}
+          />
         )}
         {isArray(msg) ? (
           <>
