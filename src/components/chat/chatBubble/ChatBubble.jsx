@@ -24,7 +24,7 @@ const ChatBubble = ({
           ai ? 'chat-bubble-accent' : 'chat-bubble-secondary'
         }`}
       >
-        {customText && (
+        {customText && msgType !== 'duel-msg' && (
           <div
             className='my-2 text-start font-mono text-base subpixel-antialiased'
             dangerouslySetInnerHTML={{ __html: customText }}
