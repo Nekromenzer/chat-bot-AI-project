@@ -274,7 +274,7 @@ export const communicateWithUser = (
     ) {
       // get asked question
       const secondLastElement = conversation[conversation.length - 2]
-      const secondLastElementMsg = secondLastElement.msg
+      const secondLastElementMsg = optimizedUserInput(secondLastElement.msg)
       // add answer
       const newHashObj = {
         data: optimizedUserInput(userText),
