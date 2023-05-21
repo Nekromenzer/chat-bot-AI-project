@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import robotHi from '../../assets/robot/robot.svg'
 import {
   SadRobot,
@@ -16,6 +16,8 @@ import {
 const isArray = item => Array.isArray(item)
 
 const Emotion = ({ conversation, isBotSpeak }) => {
+  const [speaking, setSpeaking] = useState(false)
+
   const getBotRepliesOnly =
     conversation.length && conversation?.filter(obj => obj.type === 'bot')
   const lastMsgObjConversation = getBotRepliesOnly[getBotRepliesOnly.length - 1]
@@ -27,14 +29,22 @@ const Emotion = ({ conversation, isBotSpeak }) => {
     : lastMsgObjConversation?.msg || lastMsgObjConversation?.customText
 
   const letBotSpeak = () => {
+    setSpeaking(true)
     const utterance = new SpeechSynthesisUtterance(botLastMsg)
     // voice props
-    utterance.pitch = 0.9
+    utterance.pitch = 1
     utterance.lang = 'en-UK'
     utterance.voice = window.speechSynthesis.speak(utterance)
+    utterance.onend = function () {
+      setSpeaking(false)
+    }
   }
 
   const getEmotionRobot = () => {
+    // voice
+    if (speaking) {
+      return VoiceRobot
+    }
     // hi
     if (lastMsgEmotion === 1) {
       return SmileRobot
@@ -59,21 +69,17 @@ const Emotion = ({ conversation, isBotSpeak }) => {
     if (lastMsgEmotion === 6) {
       return AngryRobot
     }
-    // voice
-    if (lastMsgEmotion === 7) {
-      return VoiceRobot
-    }
     // nervous
-    if (lastMsgEmotion === 8) {
+    if (lastMsgEmotion === 7) {
       return NervoseRobot
     }
     // surprise
-    if (lastMsgEmotion === 9) {
+    if (lastMsgEmotion === 8) {
       return SurpriseRobot
     }
     // sad
-    if (lastMsgEmotion === 10) {
-      return sad
+    if (lastMsgEmotion === 9) {
+      return SadRobot
     }
     return SmileRobot
   }
@@ -89,7 +95,7 @@ const Emotion = ({ conversation, isBotSpeak }) => {
       <img
         src={getEmotionRobot()}
         alt='robot'
-        className='w-100 animate-pulse'
+        className='w-100'
       />
     </div>
   )
