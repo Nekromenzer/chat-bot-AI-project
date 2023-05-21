@@ -44,42 +44,43 @@ const Emotion = ({ conversation, isBotSpeak }) => {
     // voice
     if (speaking) {
       return VoiceRobot
-    }
-    // hi
-    if (lastMsgEmotion === 1) {
-      return SmileRobot
-    }
-    // calm
-    if (lastMsgEmotion === 2) {
-      return CalmRobot
-    }
-    // Sleepy
-    if (lastMsgEmotion === 3) {
-      return SleepyRobot
-    }
-    // love
-    if (lastMsgEmotion === 4) {
-      return LoveRobot
-    }
-    // annoying
-    if (lastMsgEmotion === 5) {
-      return AnnoyedRobot
-    }
-    // Angry
-    if (lastMsgEmotion === 6) {
-      return AngryRobot
-    }
-    // nervous
-    if (lastMsgEmotion === 7) {
-      return NervoseRobot
-    }
-    // surprise
-    if (lastMsgEmotion === 8) {
-      return SurpriseRobot
-    }
-    // sad
-    if (lastMsgEmotion === 9) {
-      return SadRobot
+    } else {
+      // hi
+      if (lastMsgEmotion === 1) {
+        return SmileRobot
+      }
+      // calm
+      if (lastMsgEmotion === 2) {
+        return CalmRobot
+      }
+      // Sleepy
+      if (lastMsgEmotion === 3) {
+        return SleepyRobot
+      }
+      // love
+      if (lastMsgEmotion === 4) {
+        return LoveRobot
+      }
+      // annoying
+      if (lastMsgEmotion === 5) {
+        return AnnoyedRobot
+      }
+      // Angry
+      if (lastMsgEmotion === 6) {
+        return AngryRobot
+      }
+      // nervous
+      if (lastMsgEmotion === 7) {
+        return NervoseRobot
+      }
+      // surprise
+      if (lastMsgEmotion === 8) {
+        return SurpriseRobot
+      }
+      // sad
+      if (lastMsgEmotion === 9) {
+        return SadRobot
+      }
     }
     return SmileRobot
   }
@@ -92,11 +93,7 @@ const Emotion = ({ conversation, isBotSpeak }) => {
 
   return (
     <div className='h-screen flex justify-center items-center'>
-      <img
-        src={getEmotionRobot()}
-        alt='robot'
-        className='w-100'
-      />
+      <img src={getEmotionRobot()} alt='robot' className='w-100' />
     </div>
   )
 }
