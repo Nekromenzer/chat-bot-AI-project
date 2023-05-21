@@ -73,6 +73,7 @@ const Chat = ({
         setInputValue('')
         setConversation([])
         localStorage.removeItem('conversationHistory')
+        localStorage.removeItem('hashArray')
       } else if (inputValue.toLowerCase() === 'talk') {
         setIsBotSpeak(true)
         setInputValue('')
