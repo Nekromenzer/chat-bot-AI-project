@@ -35,16 +35,47 @@ const Emotion = ({ conversation, isBotSpeak }) => {
   }
 
   const getEmotionRobot = () => {
+    // hi
     if (lastMsgEmotion === 1) {
       return SmileRobot
     }
+    // calm
+    if (lastMsgEmotion === 2) {
+      return CalmRobot
+    }
+    // Sleepy
+    if (lastMsgEmotion === 3) {
+      return SleepyRobot
+    }
+    // love
+    if (lastMsgEmotion === 4) {
+      return LoveRobot
+    }
+    // annoying
     if (lastMsgEmotion === 5) {
+      return AnnoyedRobot
+    }
+    // Angry
+    if (lastMsgEmotion === 6) {
+      return AngryRobot
+    }
+    // voice
+    if (lastMsgEmotion === 7) {
+      return VoiceRobot
+    }
+    // nervous
+    if (lastMsgEmotion === 8) {
       return NervoseRobot
     }
-    if (lastMsgEmotion === 6) {
+    // surprise
+    if (lastMsgEmotion === 9) {
       return SurpriseRobot
     }
-    return robotHi
+    // sad
+    if (lastMsgEmotion === 10) {
+      return sad
+    }
+    return SmileRobot
   }
 
   useEffect(() => {
