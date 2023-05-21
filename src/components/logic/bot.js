@@ -1,13 +1,5 @@
 import { hiArray, educationHashMap, stopWords } from './dataMaps'
 
-// emotion for static bot replies
-const getEmotions = type => {
-  if (type === 'hi') {
-    return 1
-  }
-  return 0
-}
-
 // get random value from array provided
 const getRandomValueFromArray = (arr, type, userName) => {
   const randomIndex = Math.floor(Math.random() * arr.length)
@@ -20,7 +12,7 @@ const getRandomValueFromArray = (arr, type, userName) => {
         : ''
     }`,
     msgType: null,
-    emotion: getEmotions(type),
+    emotion: !(userName === null || userName === '') && type === 'hi' ? 2 : 1,
     customText: null
   }
 }
@@ -245,7 +237,7 @@ export const communicateWithUser = (
       data: `Thank you for considering our institute. Have a great day! ${
         userName && userName
       }`,
-      emotion: 2,
+      emotion: 9,
       msgType: 'greeting',
       customText: null
     })
@@ -283,7 +275,7 @@ export const communicateWithUser = (
       // add answer
       const newHashObj = {
         data: optimizedUserInput(userText),
-        emotion: 6,
+        emotion: 5,
         msgType: 'self-learned'
       }
       // add to hashmap
@@ -294,7 +286,7 @@ export const communicateWithUser = (
       // send msg to user after adding his answer
       const msgFromBot = {
         msg: 'Thanks! Added to my database, Now I know even than before',
-        emotion: 7, // thanks
+        emotion: 8, // thanks
         msgType: null,
         customText: null,
         type: 'bot'
@@ -305,7 +297,7 @@ export const communicateWithUser = (
       return cb({
         data: "I couldn't find Answer for this in my database, <b>Can you say the answer please?</b>",
         msgType: 'learn',
-        emotion: 5
+        emotion: 9
       })
     }
   }
