@@ -204,7 +204,10 @@ export const communicateWithUser = (
     return cb(value)
   }
   // branches
-  if (optimizedUserInput(userText).includes('branch')) {
+  if (
+    optimizedUserInput(userText).includes('branch') ||
+    optimizedUserInput(userText).includes('location')
+  ) {
     const value = hashMapState['branches']
     return cb(value)
   }
@@ -302,7 +305,3 @@ export const communicateWithUser = (
     }
   }
 }
-
-// +++emotions+++
-// 1 - hi
-// 2- greetings
