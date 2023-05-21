@@ -50,7 +50,8 @@ const instructionsArray = [
   '<span><b>Hi -</b> Get welcome from bot</span>',
   '<span><b>Clear -</b> Delete all chats</span>',
   '<span><b>Talk -</b> Activate bot voice</span>',
-  '<span><b>Stop talking -</b> Deactivate bot voice</span>'
+  '<span><b>Stop talking -</b> Deactivate bot voice</span>',
+  "<span className='text-left'><b>Ask bot's name in any way -</b> He will answer your question and Ask your name to remember</span>"
 ]
 
 const educationHashMap = {
