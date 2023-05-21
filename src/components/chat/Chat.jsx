@@ -28,10 +28,10 @@ const Chat = ({
   }
 
   //get custom msg
-  const getCustomBotReply = (msg, msgType, customText) => {
+  const getCustomBotReply = (msg, msgType, customText, emotion) => {
     const value = {
       data: msg,
-      emotion: 0,
+      emotion: emotion || 0,
       msgType: msgType || null,
       customText: customText
     }
@@ -76,15 +76,15 @@ const Chat = ({
       } else if (inputValue.toLowerCase() === 'talk') {
         setIsBotSpeak(true)
         setInputValue('')
-        getCustomBotReply('Hey, Im talking again!')
+        getCustomBotReply('Hey, Im talking again!', '', '', 4)
       } else if (inputValue.toLowerCase() === 'stop talking') {
         setIsBotSpeak(false)
         setInputValue('')
-        getCustomBotReply('Im not talking Anymore!')
+        getCustomBotReply('Im not talking Anymore!', '', '', 9)
       } else if (inputValue.toLowerCase() === 'help') {
         setInputValue('')
         const customText = 'Here is the command guide for Bot'
-        getCustomBotReply(instructionsArray, 'steps', customText)
+        getCustomBotReply(instructionsArray, 'steps', customText, 7)
       } else {
         makeConversation(value, 'not-bot')
         communicateWithUser(
