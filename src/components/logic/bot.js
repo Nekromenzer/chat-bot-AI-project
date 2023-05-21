@@ -75,10 +75,10 @@ export const communicateWithUser = (
     optimizedUserInput(userText).includes('night')
   ) {
     return cb({
-      data: getGreeting(),
+      data: `${getGreeting()} How can i help you?`,
       emotion: 2,
-      msgType: 'greeting',
-      customText: 'How can i help you?'
+      msgType: null,
+      customText: null
     })
   }
   // name

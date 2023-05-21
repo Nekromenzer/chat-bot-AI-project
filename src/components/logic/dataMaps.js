@@ -78,7 +78,7 @@ const educationHashMap = {
     ],
     msgType: 'table-simple',
     emotion: 1,
-    customText: 'According to learning medium we teach in flowing languages'
+    customText: 'According to learning medium we teach in following languages'
   },
   // payment option
   paymentOption: {
