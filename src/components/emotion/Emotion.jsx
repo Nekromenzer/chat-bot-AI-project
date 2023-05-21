@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from 'react'
-import robotHi from '../../assets/robot/robot.svg'
 import {
   SadRobot,
   LoveRobot,
