@@ -29,7 +29,6 @@ const Emotion = ({ conversation, isBotSpeak }) => {
     : lastMsgObjConversation?.msg || lastMsgObjConversation?.customText
 
   const letBotSpeak = () => {
-    setSpeaking(true)
     const utterance = new SpeechSynthesisUtterance(botLastMsg)
     // voice props
     utterance.pitch = 1
@@ -37,6 +36,9 @@ const Emotion = ({ conversation, isBotSpeak }) => {
     utterance.voice = window.speechSynthesis.speak(utterance)
     utterance.onend = function () {
       setSpeaking(false)
+    }
+    utterance.onstart = function () {
+      setSpeaking(true)
     }
   }
 
